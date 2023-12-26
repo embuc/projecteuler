@@ -1,6 +1,4 @@
-package se.embuc.k
-
-import se.embuc.Task
+package se.embuc
 
 /**
  * Even Fibonacci Numbers

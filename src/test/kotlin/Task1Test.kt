@@ -1,9 +1,8 @@
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
-
-import org.junit.jupiter.api.Assertions.*
 import se.embuc.Task1
 
-class JTask1Test {
+class Task1Test {
 
 	@Test
 	fun solve() {

@@ -1,5 +1,5 @@
 package se.embuc
 
-interface Problem {
+interface Task {
 	fun solve(): Any
 }

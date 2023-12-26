@@ -1,7 +1,6 @@
-package se.embuc.k
+package se.embuc
 
-import se.embuc.Task
-import se.embuc.utils.Utils.findNextPrime
+import se.embuc.utils.findNextPrime
 
 /* Largest Prime factor */
 class Task3(private var q:Long) : Task {

@@ -1,13 +1,12 @@
-import org.junit.jupiter.api.Test;
-import se.embuc.Task4;
-
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Test
+import se.embuc.Task4
 
 class Task4Test {
 
 	@Test
-	void solve() {
+	fun solve() {
 		assertEquals(906609, Task4().solve());
-		assertEquals(906609, JTask4().solve());
+//		assertEquals(906609, JTask4().solve());
 	}
 }

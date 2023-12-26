@@ -1,6 +1,4 @@
-package se.embuc.k
-
-import se.embuc.Task
+package se.embuc
 
 /**
  * Problem 1: Multiples of 3 and 5

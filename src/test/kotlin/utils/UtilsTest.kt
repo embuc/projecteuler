@@ -1,11 +1,9 @@
 package utils
 
-import org.junit.jupiter.api.Test
-
-import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
-import se.embuc.utils.Utils.isPrime
+import se.embuc.utils.isPrime
 
 class UtilsTest {
 
@@ -15,23 +13,4 @@ class UtilsTest {
 		assertEquals(true, isPrime(n))
 	}
 
-	@Test
-	fun isPalindrome() {
-	}
-
-	@Test
-	fun gcd() {
-	}
-
-	@Test
-	fun lcm() {
-	}
-
-	@Test
-	fun factorial() {
-	}
-
-	@Test
-	fun fibonacci() {
-	}
 }
