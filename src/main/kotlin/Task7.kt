@@ -13,8 +13,6 @@ class Task7: Task {
 		var prime = 2L
 		while (count < i) {
 			prime = findNextPrime(prime)
-//			if(count > 9999)
-//			println("" + count + " " + prime)
 			count++
 		}
 		return prime
