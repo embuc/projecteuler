@@ -1,11 +1,13 @@
-package se.embuc
+package se.embuc.k
+
+import se.embuc.Task
 
 /**
  * Even Fibonacci Numbers
  * By considering the terms in the Fibonacci sequence whose values do not exceed four million,
  * find the sum of the even-valued terms
  * */
-class Task2 : Problem {
+class Task2 : Task {
 
 	override fun solve(): Any {
 		var sum = 0

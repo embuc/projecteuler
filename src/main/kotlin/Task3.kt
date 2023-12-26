@@ -1,10 +1,10 @@
-package se.embuc
+package se.embuc.k
 
-import se.embuc.Problem
+import se.embuc.Task
 import se.embuc.utils.Utils.findNextPrime
 
 /* Largest Prime factor */
-class Task3(private var q:Long) : Problem {
+class Task3(private var q:Long) : Task {
 
 
 	override fun solve(): Any {

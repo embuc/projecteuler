@@ -1,8 +1,10 @@
+package j;
+
 import org.jetbrains.annotations.NotNull;
-import se.embuc.Problem;
+import se.embuc.Task;
 
 /* Even Fibonacci numbers */
-public class Problem2 implements Problem {
+public class Task2 implements Task {
 	@NotNull
 	@Override
 	public Object solve() {

@@ -1,4 +1,6 @@
-package se.embuc
+package se.embuc.k
+
+import se.embuc.Task
 
 /**
  * Problem 1: Multiples of 3 and 5
@@ -9,7 +11,7 @@ package se.embuc
  *
  * https://projecteuler.net/problem=1
  */
-class Task1 : Problem {
+class Task1 : Task {
 
 	override fun solve(): Any {
 		return (1 until 1000).filter { it % 3 == 0 || it % 5 == 0 }.sum()

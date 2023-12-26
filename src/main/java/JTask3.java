@@ -1,12 +1,14 @@
+package j;
+
 import org.jetbrains.annotations.NotNull;
-import se.embuc.Problem;
+import se.embuc.Task;
 
 /* Largest Prime factor */
-public class Problem3 implements Problem {
+public class Task3 implements Task {
 
 	private long number;
 
-	public Problem3(long input) {
+	public Task3(long input) {
 		this.number = input;
 	}
 
