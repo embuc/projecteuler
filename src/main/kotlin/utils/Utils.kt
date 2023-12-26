@@ -19,3 +19,22 @@ fun findNextPrime(n: Long): Long {
 fun isPalindrome(n: Int): Boolean {
 	return n.toString() == n.toString().reversed()
 }
+
+fun gcd(a: Long, b: Long): Long {
+	if (b == 0L) return a
+	return gcd(b, a % b)
+}
+
+fun lcm(a: Long, b: Long): Long {
+	return a / gcd(a, b) * b
+}
+
+
+fun isDivisibleByAll(n: Long, d:Long): Boolean {
+	for (i in 1..d) {
+		if (n % i != 0L) {
+			return false
+		}
+	}
+	return true
+}

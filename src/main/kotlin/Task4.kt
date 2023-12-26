@@ -7,14 +7,25 @@ class Task4: Task {
 
 	override fun solve(): Any {
 		var largest = 0
-		for (i in 100..999) {
-			for (j in 100..999) {
-				val product = i * j
-				if (isPalindrome(product) && product > largest) {
-					largest = product
-				}
+		for (i in 999 downTo 100) {
+			val max = findLargestPalindromeFor(i, largest)
+			if (max > largest) {
+				largest = max
 			}
 		}
 		return largest
+	}
+
+	private fun findLargestPalindromeFor(i: Int, largest: Int): Int {
+		for (j in i downTo 100) {
+			val product = i * j
+			if (product <= largest) {
+				break
+			}
+			if (isPalindrome(product)) {
+				return product
+			}
+		}
+		return 0
 	}
 }
