@@ -2,6 +2,7 @@ import se.embuc.Problem;
 
 import java.util.stream.IntStream;
 
+/* Multiples of 3 and 5 */
 public class Problem1 implements Problem {
 
 	public Object solve() {
