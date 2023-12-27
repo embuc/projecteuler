@@ -31,11 +31,42 @@ fun lcm(a: Long, b: Long): Long {
 }
 
 
-fun isDivisibleByAll(n: Long, d:Long): Boolean {
+fun isDivisibleByAll(n: Long, d: Long): Boolean {
 	for (i in 1..d) {
 		if (n % i != 0L) {
 			return false
 		}
 	}
 	return true
+}
+
+fun getTriangleNumber(n: Long): Long = n * (n + 1) / 2
+
+/* not efficient for large n but nice for debug and printing */
+fun getDivisors(n: Long): List<Long> {
+	val divisors = mutableListOf<Long>()
+	for (i in 1..n) {
+		if (n % i == 0L) {
+			divisors.add(i)
+		}
+	}
+	return divisors
+}
+
+/**
+ * Instead of iterating all the way up to n, you only need to go up to the square root of n. Every divisor found below
+ * the square root has a corresponding divisor above the square root. For example, if n is divisible by i, then it's
+ * also divisible by n / i. This reduces the time complexity significantly.
+ */
+fun getDivisorsCount(n: Long): Int {
+	var count = 0
+	var i = 1L
+	while (i * i <= n) {
+		if (n % i == 0L) {
+			count += 1
+			if (i != n / i) count += 1  // Count the divisor pair only if they are different
+		}
+		i++
+	}
+	return count
 }
