@@ -70,3 +70,23 @@ fun getDivisorsCount(n: Long): Int {
 	}
 	return count
 }
+
+//Sieve of Eratosthenes algorithm. This algorithm is highly efficient for finding all prime numbers up to a certain
+//limit. It works by iteratively marking the multiples of each prime number as non-prime.
+//This implementation initializes a Boolean array, prime, to keep track of whether each number up to n is prime.
+//Initially, all entries in the array are set to true. Then, for each number starting from 2, if the number is marked as
+//prime, it's added to the sum, and all of its multiples are marked as non-prime (false).
+fun sumOfPrimesBelow(n: Int): Long {
+	if (n < 2) return 0
+	val sievePrimes = BooleanArray(n) { true }
+	var sum = 0L
+	for (i in 2 until n) {
+		if (sievePrimes[i]) {
+			sum += i
+			for (j in i * 2 until n step i) {
+				sievePrimes[j] = false
+			}
+		}
+	}
+	return sum
+}
