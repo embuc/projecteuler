@@ -1,5 +1,7 @@
 package se.embuc.utils
 
+import java.math.BigInteger
+
 fun isPrime(n: Long): Boolean {
 	if (n < 2) return false
 	if (n == 2L) return true
@@ -89,4 +91,8 @@ fun sumOfPrimesBelow(n: Int): Long {
 		}
 	}
 	return sum
+}
+
+fun factorial(n: Int): BigInteger {
+	return if (n == 0) BigInteger.ONE else BigInteger.valueOf(n.toLong()) * factorial(n - 1)
 }
