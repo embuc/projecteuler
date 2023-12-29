@@ -23,6 +23,5 @@ public class JTask2 implements Task {
 			curr = next;
 		}
 		return sum;
-
 	}
 }
