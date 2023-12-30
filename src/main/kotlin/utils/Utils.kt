@@ -1,6 +1,17 @@
 package se.embuc.utils
 
+import java.io.File
 import java.math.BigInteger
+
+fun readFileAsString(path: String): String {
+	return File("src/test/resources/$path").inputStream().use { return it.bufferedReader().readText() }
+}
+
+fun readFileFromClassPathAsString(path: String): String {
+	val inputStream = Thread.currentThread().contextClassLoader.getResourceAsStream(path)
+		?: throw IllegalArgumentException("File not found")
+	return inputStream.bufferedReader().use { it.readText() }
+}
 
 fun isPrime(n: Long): Boolean {
 	if (n < 2) return false
@@ -31,7 +42,6 @@ fun gcd(a: Long, b: Long): Long {
 fun lcm(a: Long, b: Long): Long {
 	return a / gcd(a, b) * b
 }
-
 
 fun isDivisibleByAll(n: Long, d: Long): Boolean {
 	for (i in 1..d) {

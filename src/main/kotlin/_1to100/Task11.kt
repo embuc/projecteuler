@@ -8,7 +8,6 @@ class Task11(val input: String) : Task {
 	override fun solve(): Any {
 		val grid = input.split("\n").map { it.split(" ").map { it.toInt() } }
 		var max = 0
-		println("grid.size: ${grid.size}")
 		for (i in 0 until grid.size) {
 			for (j in 0 until grid[i].size - 3) {
 				val product = grid[i][j] * grid[i][j + 1] * grid[i][j + 2] * grid[i][j + 3]
