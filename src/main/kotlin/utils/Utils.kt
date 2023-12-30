@@ -97,6 +97,21 @@ fun getDivisorsSum(n: Long): Long {
 	}
 	return count
 }
+fun getDivisorsSum(n: Int): Int {
+	var count = 0
+	var i = 1
+	while (i * i <= n) {
+		if (n % i == 0) {
+			count += i
+			if (i != n / i && i != 1){//skip n itself too
+				count += n / i
+			}  // Count the divisor pair only if they are different
+		}
+		i++
+	}
+	return count
+}
+
 
 //Sieve of Eratosthenes algorithm. This algorithm is highly efficient for finding all prime numbers up to a certain
 //limit. It works by iteratively marking the multiples of each prime number as non-prime.
