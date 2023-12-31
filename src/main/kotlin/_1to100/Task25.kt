@@ -3,6 +3,7 @@ package se.embuc._1to100
 import se.embuc.Task
 import java.math.BigInteger
 
+// Fibonacci numbers 1000-digit
 class Task25: Task {
 	override fun solve(): Any {
 		var prev = BigInteger.ONE
