@@ -8,7 +8,7 @@ class Task27Test {
 
 	@Test
 	fun solve() {
-		assertEquals(-1, Task27().solve())
-		assertEquals(-1, JTask27().solve())
+		assertEquals(-59231L, Task27().solve())
+		assertEquals(-59231L, JTask27().solve())
 	}
 }
