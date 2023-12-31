@@ -13,7 +13,6 @@ class Task23:Task {
 				val sum = abundantNumbers[i] + abundantNumbers[j]
 				if(sum > limit) break
 				abundantSums[abundantNumbers[i] + abundantNumbers[j]] = true
-
 			}
 		}
 		return  (1..limit).toList().filter { !abundantSums[it] }.sum()
