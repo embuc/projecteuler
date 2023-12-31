@@ -2,7 +2,7 @@ package _1to100;
 
 import se.embuc.Task;
 
-import static se.embuc.utils.UtilsKt.factorial;
+import static se.embuc.utils.UtilsKt.factorialBig;
 
 public class JTask20 implements Task {
 
@@ -14,6 +14,6 @@ public class JTask20 implements Task {
 
 	@Override
 	public Object solve() {
-		return factorial(n).toString().chars().map(Character::getNumericValue).sum();
+		return factorialBig(n).toString().chars().map(Character::getNumericValue).sum();
 	}
 }

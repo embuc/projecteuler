@@ -1,7 +1,7 @@
 package se.embuc._1to100
 
 import se.embuc.Task
-import se.embuc.utils.factorial
+import se.embuc.utils.factorialBig
 import java.math.BigInteger
 
 // Lattice paths
@@ -35,7 +35,7 @@ class Task15(private val size: Int) : Task {
 	fun findNumberOfPaths(gridSize: Int): BigInteger {
 		val n = gridSize * 2
 		val k = gridSize
-		return factorial(n) / (factorial(k) * factorial(n - k))
+		return factorialBig(n) / (factorialBig(k) * factorialBig(n - k))
 	}
 
 }

@@ -133,6 +133,44 @@ fun sumOfPrimesBelow(n: Int): Long {
 	return sum
 }
 
-fun factorial(n: Int): BigInteger {
-	return if (n == 0) BigInteger.ONE else BigInteger.valueOf(n.toLong()) * factorial(n - 1)
+fun factorialBig(n: Int): BigInteger {
+	return if (n == 0) BigInteger.ONE else BigInteger.valueOf(n.toLong()) * factorialBig(n - 1)
+}
+
+fun factorial(n: Int): Int = if (n <= 1) 1 else n * factorial(n - 1)
+
+// This method is used to find the number of permutations of a string. It will find ALL permutations, this is quite slow
+// for instance for a string of length 10(Task 24). Better to use specialized method bellow, that one is O(n)
+fun String.permutations(): List<String> {
+	if (this.length == 1) return listOf(this)
+	val perms = mutableListOf<String>()
+	val toInsert = this[0]
+	val subPerms = this.substring(1).permutations()
+	for (perm in subPerms) {
+		for (i in 0..perm.length) {
+			val newPerm = perm.substring(0, i) + toInsert + perm.substring(i)
+			perms.add(newPerm)
+		}
+	}
+	return perms
+}
+
+// this one is fast, O(n)
+fun computeNthPermutation(numbers: MutableList<Char>, n: Int): String {
+	var index = n - 1 // Adjusting index to be zero-based
+	var result = ""
+
+	while (numbers.isNotEmpty()) {
+		val factorial = factorial(numbers.size - 1)
+		if (index >= factorial * numbers.size) {
+			// If the index is out of the valid range
+			return "Invalid permutation index"
+		}
+		val listIndex = index / factorial
+		result += numbers[listIndex]
+		index %= factorial
+		numbers.removeAt(listIndex)
+	}
+
+	return result
 }
