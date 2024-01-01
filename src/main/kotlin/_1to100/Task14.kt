@@ -12,7 +12,7 @@ class Task14 : Task {
 		var maxLength = 0L
 		var number = 0L
 
-		for (i in 1 until 1_000_000) {
+		for (i in 1 until maxNumber) {
 			val length = findColatzSeqLength(i.toLong())
 			if (length > maxLength) {
 				maxLength = length
