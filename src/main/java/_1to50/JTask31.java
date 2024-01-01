@@ -1,30 +1,39 @@
 package _1to50;
 
+import org.jetbrains.annotations.NotNull;
 import se.embuc.Task;
 
 // Coin Sums
 public class JTask31 implements Task {
+	@NotNull
+	private final int[] coins;
+	private final int amount;
+
+	public JTask31(@NotNull int[] coins, int amount) {
+		this.coins = coins;
+		this.amount = amount;
+	}
+
 	@Override
 	public Object solve() {
-		var combinations = 1;
-		int [] coins = {1, 2, 5, 10, 20, 50, 100};
-		for(int a = 0; a <= 200/coins[6]; a++) {
-			for(int b = 0; b <= 200 /coins[5]; b++) {
-				for(int c = 0; c <= 200 /coins[4]; c++) {
-					for(int d = 0; d <= 200 /coins[3]; d++) {
-						for(int e = 0; e <= 200 /coins[2]; e++) {
-							for(int f = 0; f <= 200 /coins[1]; f++) {
-								for(int g = 0; g <= 200 /coins[0]; g++) {
-									if (a * coins[6] + b * coins[5] + c * coins[4] + d * coins[3] + e * coins[2] + f * coins[1] + g * coins[0] == 200) {
-										combinations++;
-									}
-								}
-							}
-						}
-					}
-				}
+		int[][] waysToMakeAmount = new int[amount + 1][coins.length];
+
+		// There is 1 way to make amount 0 (using no coins)
+		for (int coinIndex = 0; coinIndex < coins.length; coinIndex++) {
+			waysToMakeAmount[0][coinIndex] = 1;
+		}
+
+		// Calculate the number of ways to make each amount
+		for (int amount = 1; amount <= this.amount; amount++) {
+			for (int coinIndex = 0; coinIndex < coins.length; coinIndex++) {
+				int waysWithoutCurrentCoin = coinIndex > 0 ? waysToMakeAmount[amount][coinIndex - 1] : 0;
+				int remainingAmount = amount - coins[coinIndex];
+				int waysWithCurrentCoin = remainingAmount >= 0 ? waysToMakeAmount[remainingAmount][coinIndex] : 0;
+
+				waysToMakeAmount[amount][coinIndex] = waysWithoutCurrentCoin + waysWithCurrentCoin;
 			}
 		}
-		return combinations;
+
+		return waysToMakeAmount[amount][coins.length - 1];
 	}
 }

@@ -8,7 +8,18 @@ class Task31Test {
 
 	@Test
 	fun solve() {
-		assertEquals(73682, Task31().solve())
-		assertEquals(73682, JTask31().solve())
+		val coins = intArrayOf(1, 2, 5, 10, 20, 50, 100, 200)
+		val amount = 200
+		assertEquals(73682, Task31(coins, amount).solve())
+		assertEquals(73682, JTask31(coins, amount).solve())
+	}
+
+	@Test
+	fun solveSmallerExample() {
+		val coins = intArrayOf(1, 2, 5, 10)
+		val amount = 10
+
+		assertEquals(11, Task31(coins, amount).solve())
+		assertEquals(11, JTask31(coins, amount).solve())
 	}
 }
