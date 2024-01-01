@@ -10,6 +10,6 @@ class Task3Test {
 	fun solve() {
 		val input = 600851475143L
 		assertEquals(6857L, Task3(input).solve())
-		assertEquals(6857L, JTask3(input).solve())
+		assertEquals(6857L, _1to50.JTask3(input).solve())
 	}
 }

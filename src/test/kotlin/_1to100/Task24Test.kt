@@ -9,6 +9,6 @@ class Task24Test {
 	@Test
 	fun solve() {
 		assertEquals("2783915460", Task24().solve())
-		assertEquals("2783915460", JTask24().solve())
+		assertEquals("2783915460", _1to50.JTask24().solve())
 	}
 }

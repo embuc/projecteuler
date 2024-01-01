@@ -32,6 +32,6 @@ class Task8Test {
 	@Test
 	fun solve() {
 		assertEquals(23514624000L, Task8(input).solve())
-		assertEquals(23514624000L, JTask8(input).solve())
+		assertEquals(23514624000L, _1to50.JTask8(input).solve())
 	}
 }

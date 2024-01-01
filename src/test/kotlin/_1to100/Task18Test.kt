@@ -25,6 +25,6 @@ class Task18Test {
 	@Test
 	fun solve() {
 		assertEquals(1074, Task18(input).solve())
-		assertEquals(1074, JTask18(input).solve())
+		assertEquals(1074, _1to50.JTask18(input).solve())
 	}
 }

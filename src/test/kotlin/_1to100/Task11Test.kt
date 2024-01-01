@@ -31,6 +31,6 @@ class Task11Test {
 	@Test
 	fun solve() {
 		assertEquals(70600674, Task11(input).solve())
-		assertEquals(70600674, JTask11(input).solve())
+		assertEquals(70600674, _1to50.JTask11(input).solve())
 	}
 }

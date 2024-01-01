@@ -11,14 +11,14 @@ class Task22Test {
 	fun solve() {
 		val input = readFileAsString("22_names.txt")
 		assertEquals(871198282L, Task22(input).solve())
-		assertEquals(871198282L, JTask22(input).solve())
+		assertEquals(871198282L, _1to50.JTask22(input).solve())
 	}
 
 	@Test
 	fun solveExample() {
 		val input = "COLIN"
 		assertEquals(53, Task22(input).solve())
-		assertEquals(53, JTask22(input).solve())
+		assertEquals(53, _1to50.JTask22(input).solve())
 	}
 
 }
