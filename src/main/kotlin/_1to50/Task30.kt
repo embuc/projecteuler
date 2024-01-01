@@ -20,4 +20,5 @@ class Task30: Task {
 		}
 		return sum
 	}
+
 }

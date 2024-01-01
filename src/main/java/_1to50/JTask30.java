@@ -15,7 +15,6 @@ public class JTask30 implements Task {
 				digitSum += digit * digit * digit * digit * digit;
 			}
 			if (digitSum == i) {
-				System.out.println(digitSum);
 				sum += i;
 			}
 		}
