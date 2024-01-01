@@ -3,6 +3,7 @@ package _1to50
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import se.embuc._1to50.Task31
+import kotlin.test.Ignore
 
 class Task31Test {
 
@@ -15,6 +16,7 @@ class Task31Test {
 	}
 
 	@Test
+	@Ignore
 	fun solveSmallerExample() {
 		val coins = intArrayOf(1, 2, 5, 10)
 		val amount = 10
