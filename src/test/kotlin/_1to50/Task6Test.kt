@@ -1,8 +1,8 @@
-package _1to100
+package _1to50
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
-import se.embuc._1to100.Task6
+import se.embuc._1to50.Task6
 
 class Task6Test {
 

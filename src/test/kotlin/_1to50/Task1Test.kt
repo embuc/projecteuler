@@ -1,4 +1,4 @@
-package _1to100
+package _1to50
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
