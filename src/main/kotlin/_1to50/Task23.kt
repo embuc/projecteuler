@@ -4,7 +4,8 @@ import se.embuc.Task
 import se.embuc.utils.getDivisorsSum
 
 class Task23:Task {
-	override fun solve(): Any {
+	override
+	fun solve(): Any {
 		val limit = 28123
 		val abundantNumbers = (1..limit).filter { getDivisorsSum(it) > it }
 		var abundantSums = BooleanArray(limit + 1)
@@ -17,5 +18,4 @@ class Task23:Task {
 		}
 		return  (1..limit).toList().filter { !abundantSums[it] }.sum()
 	}
-
 }

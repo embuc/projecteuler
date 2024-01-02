@@ -34,6 +34,10 @@ fun isPalindrome(n: Int): Boolean {
 	return n.toString() == n.toString().reversed()
 }
 
+fun gcd(a: Int, b: Int): Int {
+	return if (b == 0) a else gcd(b, a % b)
+}
+
 fun gcd(a: Long, b: Long): Long {
 	if (b == 0L) return a
 	return gcd(b, a % b)
@@ -41,6 +45,16 @@ fun gcd(a: Long, b: Long): Long {
 
 fun lcm(a: Long, b: Long): Long {
 	return a / gcd(a, b) * b
+}
+
+fun lcm(a: Int, b: Int): Int {
+	return if (a == 0 || b == 0) 0 else Math.abs(a * b) / gcd(a, b)
+}
+
+fun findLCD(denominators: List<Int>): Int {
+	return denominators.fold(1) { lcm, denominator ->
+		lcm(lcm, denominator)
+	}
 }
 
 fun isDivisibleByAll(n: Long, d: Long): Boolean {
