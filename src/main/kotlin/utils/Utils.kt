@@ -174,3 +174,17 @@ fun computeNthPermutation(numbers: MutableList<Char>, n: Int): String {
 
 	return result
 }
+
+fun isPanDigit(arr: IntArray): Boolean {
+	var map = 0 // (binary 0000000000) no digits encountered yet
+	for (number in arr) {
+		var num = number
+		while (num > 0) {
+			val bit = 1 shl (num % 10) // shift left in java: <<
+			if (map and bit != 0) return false // bit already set in map, not pandigital
+			map = map or bit
+			num /= 10
+		}
+	}
+	return map == 1022 // 1022 = binary 1111111110, representing digits 1 to 9
+}
