@@ -1,15 +1,21 @@
 package se.embuc._1to50
 
 import se.embuc.Task
+import kotlin.math.pow
 
 // Champernowne's constant
 class Task40: Task {
 	override fun solve(): Any {
-		var s = ""
-		var i = 1
-		while (s.length < 1_000_000) {
-			s += i++
+		val s = StringBuilder()
+		for (i in 1..200000) {//there are more decimals using 200_000 natural numbers than needed
+			s.append(i)
 		}
-		return s[0].toString().toInt() * s[9].toString().toInt() * s[99].toString().toInt() * s[999].toString().toInt() * s[9999].toString().toInt() * s[99999].toString().toInt() * s[999999].toString().toInt()
+		var result = 1
+		for (i in 0..6) {
+			result *= s[10.0.pow(i.toDouble()).toInt() - 1].code - '0'.code
+		}
+		return result
 	}
+
+
 }
