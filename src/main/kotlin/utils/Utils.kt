@@ -147,6 +147,33 @@ fun sumOfPrimesBelow(n: Int): Long {
 	return sum
 }
 
+//optimized version:
+//
+//All even numbers except 2 are marked as non-prime initially.
+//The outer loop runs through odd numbers starting from 3 and only up to the square root of n.
+//The inner loop starts from i * i and steps through numbers at intervals of 2 * i (since we're only considering odd
+//multiples of i, which are odd).
+fun getPrimesSieveBelow(n: Int): BooleanArray {
+	val sievePrimes = BooleanArray(n) { true }
+	if (n > 0) sievePrimes[0] = false
+	if (n > 1) sievePrimes[1] = false
+
+	for (i in 2 until n step 2) {
+		sievePrimes[i] = false
+	}
+
+	val sqrtN = kotlin.math.sqrt(n.toDouble()).toInt()
+	for (i in 3..sqrtN step 2) {
+		if (sievePrimes[i]) {
+			for (j in i * i until n step 2 * i) {
+				sievePrimes[j] = false
+			}
+		}
+	}
+
+	return sievePrimes
+}
+
 fun factorialBig(n: Int): BigInteger {
 	return if (n == 0) BigInteger.ONE else BigInteger.valueOf(n.toLong()) * factorialBig(n - 1)
 }
