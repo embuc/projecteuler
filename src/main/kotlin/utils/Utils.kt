@@ -29,12 +29,32 @@ fun findNextPrime(n: Long): Long {
 	while (!isPrime(i)) i++
 	return i
 }
-
+// this one is neat and simple but not fast for many numbers to check
 fun isPalindrome(n: Int): Boolean {
 	return n.toString() == n.toString().reversed()
 }
 fun isPalindrome(n: String): Boolean {
 	return n == n.reversed()
+}
+
+fun isDecimalPalindrome(number: Int): Boolean {
+	var reversed = 0
+	var temp = number
+	while (temp > 0) {
+		reversed = reversed * 10 + temp % 10
+		temp /= 10
+	}
+	return number == reversed
+}
+
+fun isBinaryPalindrome(number: Int): Boolean {
+	var reversed = 0
+	var temp = number
+	while (temp > 0) {
+		reversed = (reversed shl 1) or (temp and 1)
+		temp = temp ushr 1
+	}
+	return number == reversed
 }
 
 fun gcd(a: Int, b: Int): Int {

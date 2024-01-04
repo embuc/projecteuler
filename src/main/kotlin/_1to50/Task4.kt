@@ -1,7 +1,7 @@
 package se.embuc._1to50
 
 import se.embuc.Task
-import se.embuc.utils.isPalindrome
+import se.embuc.utils.isDecimalPalindrome
 
 /* Largest Palindrome Product */
 class Task4: Task {
@@ -23,7 +23,7 @@ class Task4: Task {
 			if (product <= largest) {
 				break
 			}
-			if (isPalindrome(product)) {
+			if (isDecimalPalindrome(product)) {
 				return product
 			}
 		}

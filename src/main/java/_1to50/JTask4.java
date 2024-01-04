@@ -2,7 +2,7 @@ package _1to50;
 
 import se.embuc.Task;
 
-import static se.embuc.utils.UtilsKt.isPalindrome;
+import static se.embuc.utils.UtilsKt.isDecimalPalindrome;
 
 /* Largest Palindrome Product */
 public class JTask4 implements Task {
@@ -18,7 +18,7 @@ public class JTask4 implements Task {
 				if (product <= largest) {
 					break; //all further products will be smaller
 				}
-				if (isPalindrome(product)) {
+				if (isDecimalPalindrome(product)) {
 					largest = product;
 					break; //no need to check smaller j values for the same i
 				}
