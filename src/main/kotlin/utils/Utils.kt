@@ -181,7 +181,7 @@ fun getPrimesSieveBelow(n: Int): BooleanArray {
 	if (n > 0) sievePrimes[0] = false
 	if (n > 1) sievePrimes[1] = false
 
-	for (i in 2 until n step 2) {
+	for (i in 4 until n step 2) {//jump over 2 and mark all even numbers as non-prime
 		sievePrimes[i] = false
 	}
 
@@ -251,4 +251,18 @@ fun isPanDigit(arr: IntArray): Boolean {
 		}
 	}
 	return map == 1022 // 1022 = binary 1111111110, representing digits 1 to 9
+}
+
+fun getIntMagnitude(i:Int):Pair<Int,Int>{
+	var n = i
+	var log = 0
+	var exp = 1
+	// Loop (Determining the Magnitude): The while loop increases exp by multiplying it by 10 each time
+	// until 10*exp is >= than n. Simultaneously, log is incremented to track the number of digits in n.
+	// For example, if n is 1234, after this loop, exp will be 1000 and log will be 4.
+	while (10 * exp <= n) {
+		exp *= 10
+		++log
+	}
+	return Pair(exp, log)
 }

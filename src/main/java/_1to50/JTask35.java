@@ -1,7 +1,9 @@
 package _1to50;
 
+import kotlin.Pair;
 import se.embuc.Task;
 
+import static se.embuc.utils.UtilsKt.getIntMagnitude;
 import static se.embuc.utils.UtilsKt.getPrimesSieveBelow;
 //Circular primes
 public class JTask35 implements Task {
@@ -22,12 +24,9 @@ public class JTask35 implements Task {
 
 	int rotateAndCheck(int i, boolean [] primes){
 		var n = i;
-		var log = 0;
-		var exp = 1;
-		while (10 * exp <= n) {
-			exp *= 10;
-			++log;
-		}
+		Pair<Integer, Integer> intMagnitude  = getIntMagnitude(i);
+		var exp = intMagnitude.getFirst();
+		var log = intMagnitude.getSecond();
 		while (log-- > 0) {
 			n = (10 * n + n / exp) % (10 * exp);
 			if (!primes[n]) return 0;
