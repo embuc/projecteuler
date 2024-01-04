@@ -33,6 +33,9 @@ fun findNextPrime(n: Long): Long {
 fun isPalindrome(n: Int): Boolean {
 	return n.toString() == n.toString().reversed()
 }
+fun isPalindrome(n: String): Boolean {
+	return n == n.reversed()
+}
 
 fun gcd(a: Int, b: Int): Int {
 	return if (b == 0) a else gcd(b, a % b)

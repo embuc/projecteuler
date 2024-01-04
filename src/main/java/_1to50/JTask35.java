@@ -3,7 +3,7 @@ package _1to50;
 import se.embuc.Task;
 
 import static se.embuc.utils.UtilsKt.getPrimesSieveBelow;
-
+//Circular primes
 public class JTask35 implements Task {
 	@Override
 	public Object solve() {
