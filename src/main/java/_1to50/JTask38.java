@@ -10,9 +10,8 @@ import static se.embuc.utils.UtilsKt.isPanDigit;
 public class JTask38 implements Task {
 	@Override
 	public Object solve() {
-		var max = 0;
 		// see kotlin version for explanation
-		for (int i = 9183; i < 9876; i++){
+		for (int i = 9876; i > 9183; i--){
 			var number = "";
 			var j = 1;
 			var products = new ArrayList<Integer>();
@@ -26,12 +25,9 @@ public class JTask38 implements Task {
 				intArray[k] = products.get(k);
 			}
 			if (number.length() == 9 && isPanDigit(intArray)){
-				var intNumber = Integer.valueOf(number);
-				if(intNumber > max){
-					max = intNumber;
-				}
+				return number;
 			}
 		}
-		return max;
+		return "";
 	}
 }

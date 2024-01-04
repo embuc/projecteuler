@@ -8,7 +8,7 @@ class Task38Test {
 
 	@Test
 	fun solve() {
-		assertEquals(932718654, Task38().solve())
-		assertEquals(932718654, JTask38().solve())
+		assertEquals("932718654", Task38().solve())
+		assertEquals("932718654", JTask38().solve())
 	}
 }
