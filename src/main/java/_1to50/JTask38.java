@@ -11,7 +11,8 @@ public class JTask38 implements Task {
 	@Override
 	public Object solve() {
 		var max = 0;
-		for (int i = 2; i < 10000; i++){
+		// see kotlin version for explanation
+		for (int i = 9183; i < 9876; i++){
 			var number = "";
 			var j = 1;
 			var products = new ArrayList<Integer>();
