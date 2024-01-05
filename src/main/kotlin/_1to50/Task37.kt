@@ -34,7 +34,7 @@ class Task37 : Task {
 		}
 		var (exp, log) = getIntMagnitude(i)
 		n = i
-		while (log >= 0) {
+		while (log > 0) {
 			if (!sieve[n]) {
 				return false
 			}

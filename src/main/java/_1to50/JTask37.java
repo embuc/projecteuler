@@ -41,7 +41,7 @@ public class JTask37 implements Task {
 		var log = intMagnitude.getSecond();
 
 		n = i;
-		while (log >= 0) {
+		while (log > 0) {
 			if (!sieve[n]) {
 				return false;
 			}

@@ -29,10 +29,12 @@ fun findNextPrime(n: Long): Long {
 	while (!isPrime(i)) i++
 	return i
 }
+
 // this one is neat and simple but not fast for many numbers to check
 fun isPalindrome(n: Int): Boolean {
 	return n.toString() == n.toString().reversed()
 }
+
 fun isPalindrome(n: String): Boolean {
 	return n == n.reversed()
 }
@@ -119,6 +121,7 @@ fun getDivisorsCount(n: Long): Int {
 	}
 	return count
 }
+
 /* Similar to above */
 fun getDivisorsSum(n: Long): Long {
 	var count = 0L
@@ -126,7 +129,7 @@ fun getDivisorsSum(n: Long): Long {
 	while (i * i <= n) {
 		if (n % i == 0L) {
 			count += i
-			if (i != n / i && i != 1L){//skip n itself too
+			if (i != n / i && i != 1L) {//skip n itself too
 				count += n / i
 			}  // Count the divisor pair only if they are different
 		}
@@ -134,13 +137,14 @@ fun getDivisorsSum(n: Long): Long {
 	}
 	return count
 }
+
 fun getDivisorsSum(n: Int): Int {
 	var count = 0
 	var i = 1
 	while (i * i <= n) {
 		if (n % i == 0) {
 			count += i
-			if (i != n / i && i != 1){//skip n itself too
+			if (i != n / i && i != 1) {//skip n itself too
 				count += n / i
 			}  // Count the divisor pair only if they are different
 		}
@@ -156,22 +160,15 @@ fun getDivisorsSum(n: Int): Int {
 //Initially, all entries in the array are set to true. Then, for each number starting from 2, if the number is marked as
 //prime, it's added to the sum, and all of its multiples are marked as non-prime (false).
 fun sumOfPrimesBelow(n: Int): Long {
-	if (n < 2) return 0
-	val sievePrimes = BooleanArray(n) { true }
 	var sum = 0L
-	for (i in 2 until n) {
-		if (sievePrimes[i]) {
-			sum += i
-			for (j in i * 2 until n step i) {
-				sievePrimes[j] = false
-			}
-		}
+	val primes = getPrimesSieveBelow(n)
+	primes.forEachIndexed { index, b ->
+		if (b) sum += index
 	}
 	return sum
 }
 
-//optimized version:
-//
+//optimized version for whole array of primes:
 //All even numbers except 2 are marked as non-prime initially.
 //The outer loop runs through odd numbers starting from 3 and only up to the square root of n.
 //The inner loop starts from i * i and steps through numbers at intervals of 2 * i (since we're only considering odd
@@ -193,9 +190,9 @@ fun getPrimesSieveBelow(n: Int): BooleanArray {
 			}
 		}
 	}
-
 	return sievePrimes
 }
+
 
 fun factorialBig(n: Int): BigInteger {
 	return if (n == 0) BigInteger.ONE else BigInteger.valueOf(n.toLong()) * factorialBig(n - 1)
@@ -250,12 +247,33 @@ fun isPanDigit(arr: IntArray): Boolean {
 			num /= 10
 		}
 	}
-	return map == 1022 // 1022 = binary 1111111110, representing digits 1 to 9
+	val width = arr.map { getIntMagnitude(it).second }.sum()
+
+	when (width) {
+		1 -> return map == 2 //1digits binary 10, representing digit 1 once for length of 1
+		2 -> return map == 6 //2digits binary 110, representing digits 1 to 2 once for length of 2
+		3 -> return map == 14
+		4 -> return map == 30
+		5 -> return map == 62
+		6 -> return map == 126
+		7 -> return map == 254
+		8 -> return map == 510
+		9 -> return map == 1022
+		}
+	return 	(  map == 1022 	//9digits binary 1111111110, representing digits 1 to 9 once for length of 9
+			|| map == 510	//8digits
+			|| map == 254	//7digits
+			|| map == 126	//6digits
+			|| map == 62	//5digits
+			|| map == 30	//4digits
+			|| map == 14	//3digits
+			|| map == 6		//2digits
+			|| map == 2);	//1digits
 }
 
-fun getIntMagnitude(i:Int):Pair<Int,Int>{
+fun getIntMagnitude(i: Int): Pair<Int, Int> {
 	var n = i
-	var log = 0
+	var log = 1
 	var exp = 1
 	// Loop (Determining the Magnitude): The while loop increases exp by multiplying it by 10 each time
 	// until 10*exp is >= than n. Simultaneously, log is incremented to track the number of digits in n.

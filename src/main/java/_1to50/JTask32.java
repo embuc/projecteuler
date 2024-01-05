@@ -2,9 +2,11 @@ package _1to50;
 
 import se.embuc.Task;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
+import static se.embuc.utils.UtilsKt.getIntMagnitude;
 import static se.embuc.utils.UtilsKt.isPanDigit;
 
 public class JTask32 implements Task {
@@ -22,7 +24,9 @@ public class JTask32 implements Task {
 					int product = a * b;
 					if (product > 9876 || product < 1234) {continue;}
 					if (isPanDigit(new int[]{a, b, product})) {
-						products.add(product);
+						if (Arrays.stream(new int[]{a, b, product}).map(i-> getIntMagnitude(i).getSecond()).sum() == 9){
+							products.add(product);
+						}
 					}
 				}
 			}

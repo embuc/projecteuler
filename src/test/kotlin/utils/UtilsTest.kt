@@ -6,6 +6,7 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
 import org.junit.jupiter.params.provider.ValueSource
 import se.embuc.utils.findNextPrime
+import se.embuc.utils.getIntMagnitude
 import se.embuc.utils.isPrime
 
 class UtilsTest {
@@ -31,6 +32,30 @@ class UtilsTest {
 	)
 	fun findNextPrimeTest(input: Long, expected: Long) {
 		assertEquals(expected, findNextPrime(input))
+	}
+
+	@ParameterizedTest
+	@CsvSource(
+		"1, 1",
+		"12, 2",
+		"123, 3",
+		"1234, 4",
+		"12345, 5",
+		"123456, 6",
+		"1234567, 7",
+		"12345678, 8",
+		"123456789, 9"
+	)
+	fun shouldGetIntMagnitude(input: Int, expected: Int) {
+		assertEquals(expected, getIntMagnitude(input).second)
+	}
+
+	@Test
+	fun shouldCheckArrayOfIntsMagnitude() {
+		var arr = intArrayOf(1, 2, 3, 4, 5, 6, 7, 8, 9)
+		assertEquals(9, arr.map { getIntMagnitude(it).second }.sum())
+		arr = intArrayOf(12,123,4567)
+		assertEquals(9, arr.map { getIntMagnitude(it).second }.sum())
 	}
 
 }
