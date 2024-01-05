@@ -293,3 +293,14 @@ fun getIntMagnitude(i: Int): Pair<Int, Int> {
 	}
 	return Pair(exp, log)
 }
+
+fun getPentagonalNumbers(n: Int): Pair<IntArray, BooleanArray> {
+	var arrDict = BooleanArray(n*3*n/2) { false }
+	var arr = IntArray(n)
+	for (i in 1..n) {
+		val pentagonalNumber = i * (3 * i - 1) / 2
+		arrDict[pentagonalNumber] = true
+		arr[i-1] = pentagonalNumber
+	}
+	return Pair(arr, arrDict)
+}
