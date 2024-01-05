@@ -93,6 +93,7 @@ fun isDivisibleByAll(n: Long, d: Long): Boolean {
 }
 
 fun getTriangleNumber(n: Long): Long = n * (n + 1) / 2
+fun getTriangleNumber(n: Int): Int = n * (n + 1) / 2
 fun getTriangleNumbersUpTo(n: Int) : BooleanArray {
 	val triangleNumbers = BooleanArray(n) { false }
 	for (i in 1..sqrt(n.toDouble()).toInt()) {
@@ -303,4 +304,64 @@ fun getPentagonalNumbers(n: Int): Pair<IntArray, BooleanArray> {
 		arr[i-1] = pentagonalNumber
 	}
 	return Pair(arr, arrDict)
+}
+fun getHexagonalNumbers(n: Int): Pair<IntArray, BooleanArray> {
+	var arrDict = BooleanArray(n*2*n) { false }
+	var arr = IntArray(n)
+	for (i in 1..n) {
+		val hexagonalNumber = i * (2 * i - 1)
+		arrDict[hexagonalNumber] = true
+		arr[i-1] = hexagonalNumber
+	}
+	return Pair(arr, arrDict)
+}
+
+fun solveQuadratic(a: Double, b: Double, c: Double): Pair<Double?, Double?> {
+	if (a == 0.0) {
+		// Not a quadratic equation
+		return null to null
+	}
+
+	val discriminant = b * b - 4 * a * c
+
+	return if (discriminant > 0) {
+		// Two real and distinct roots
+		Pair((-b + sqrt(discriminant)) / (2 * a), (-b - sqrt(discriminant)) / (2 * a))
+	} else if (discriminant == 0.0) {
+		// One real root (roots are equal)
+		Pair(-b / (2 * a), -b / (2 * a))
+	} else {
+		// Roots are complex and different
+		null to null
+	}
+}
+
+fun findPositiveIntegerRoot(a: Double, b: Double, c: Double): Double? {
+	if (a == 0.0) {
+		// Not a quadratic equation
+		return null
+	}
+
+	val discriminant = b * b - 4 * a * c
+
+	if (discriminant < 0) {
+		// No real roots
+		return null
+	}
+
+	val sqrtDiscriminant = sqrt(discriminant)
+	val root1 = (-b + sqrtDiscriminant) / (2 * a)
+	val root2 = (-b - sqrtDiscriminant) / (2 * a)
+
+	// Check for positive integer roots
+	if (root1 > 0 && root1 % 1 == 0.0) {
+		// Root1 is a positive integer
+		return root1
+	}
+	if (root2 > 0 && root2 % 1 == 0.0) {
+		// Root2 is a positive integer
+		return root2
+	}
+
+	return null
 }

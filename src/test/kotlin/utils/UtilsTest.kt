@@ -1,11 +1,13 @@
 package utils
 
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertNull
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
 import org.junit.jupiter.params.provider.ValueSource
 import se.embuc.utils.findNextPrime
+import se.embuc.utils.findPositiveIntegerRoot
 import se.embuc.utils.getIntMagnitude
 import se.embuc.utils.isPrime
 
@@ -56,6 +58,18 @@ class UtilsTest {
 		assertEquals(9, arr.map { getIntMagnitude(it).second }.sum())
 		arr = intArrayOf(12,123,4567)
 		assertEquals(9, arr.map { getIntMagnitude(it).second }.sum())
+	}
+
+	@Test
+	fun shouldFindPositiveIntegerRoot(){
+		val integerRoot = findPositiveIntegerRoot(3 / 2.0, -1 / 2.0, -40755.0)
+		assertEquals(165.0, integerRoot)
+	}
+
+	@Test
+	fun shouldNotFindPositiveIntegerRoot(){
+		val integerRoot = findPositiveIntegerRoot(3 / 2.0, -1 / 2.0, -40754.0)
+		assertNull(integerRoot)
 	}
 
 }
