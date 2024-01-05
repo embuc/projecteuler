@@ -2,6 +2,7 @@ package se.embuc.utils
 
 import java.io.File
 import java.math.BigInteger
+import kotlin.math.sqrt
 
 fun readFileAsString(path: String): String {
 	return File("src/test/resources/$path").inputStream().use { return it.bufferedReader().readText() }
@@ -92,6 +93,14 @@ fun isDivisibleByAll(n: Long, d: Long): Boolean {
 }
 
 fun getTriangleNumber(n: Long): Long = n * (n + 1) / 2
+fun getTriangleNumbersUpTo(n: Int) : BooleanArray {
+	val triangleNumbers = BooleanArray(n) { false }
+	for (i in 1..sqrt(n.toDouble()).toInt()) {
+		val triangleNumber = getTriangleNumber(i.toLong()).toInt()
+		triangleNumbers[triangleNumber] = true
+	}
+	return triangleNumbers
+}
 
 /* not efficient for large n but nice for debug and printing */
 fun getDivisors(n: Long): List<Long> {
