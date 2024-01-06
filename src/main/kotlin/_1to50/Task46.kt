@@ -1,13 +1,13 @@
 package se.embuc._1to50
 
 import se.embuc.Task
-import se.embuc.utils.getPrimesBellow
+import se.embuc.utils.getPrimesBelow
 
 // Goldbach's other conjecture
 class Task46 : Task {
 	override fun solve(): Any {
 		val limit = 10_000
-		val (primes, sieve) = getPrimesBellow(limit)
+		val (primes, sieve) = getPrimesBelow(limit)
 		for (composite in 33..limit step 2) {
 			if (sieve[composite]) continue
 			var foundSquare = false

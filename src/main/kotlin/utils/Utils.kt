@@ -94,7 +94,7 @@ fun isDivisibleByAll(n: Long, d: Long): Boolean {
 
 fun getTriangleNumber(n: Long): Long = n * (n + 1) / 2
 fun getTriangleNumber(n: Int): Int = n * (n + 1) / 2
-fun getTriangleNumbersUpTo(n: Int) : BooleanArray {
+fun getTriangleNumbersUpTo(n: Int): BooleanArray {
 	val triangleNumbers = BooleanArray(n) { false }
 	for (i in 1..sqrt(n.toDouble()).toInt()) {
 		val triangleNumber = getTriangleNumber(i.toLong()).toInt()
@@ -113,6 +113,95 @@ fun getDivisors(n: Long): List<Long> {
 	}
 	return divisors
 }
+
+// Int version, be cautious with large n
+fun getDivisors(n: Int): Set<Int> {
+	val divisors = mutableSetOf<Int>()
+	for (i in 1..n) {
+		if (n % i == 0) {
+			divisors.add(i)
+		}
+	}
+	return divisors
+}
+
+fun primeFactors(n: Int, primes: List<Int>): Set<Int> {
+	var number = n
+	val factors = mutableSetOf<Int>()
+
+	// Check divisibility by provided prime numbers
+	for (prime in primes) {
+		if (prime > number) break // No need to check primes greater than the remaining number
+		while (number % prime == 0) {
+			factors.add(prime)
+			number /= prime
+		}
+	}
+
+	// If number is a prime greater than the last prime in the list
+	if (number > 1) {
+		factors.add(number)
+	}
+
+	return factors
+}
+
+fun primeFactorsCount(n: Int): Int {
+	var number = n
+	var count = 0
+	var primeTest = -1
+	val rootOfN = sqrt(n.toDouble())
+
+	// Divide out all factors of 2
+	while (number % 2 == 0) {
+		if (primeTest != 2) {
+			count++
+			primeTest = 2
+		}
+		number /= 2;
+	}
+	var i = 3
+	while (i <= rootOfN) {
+		while (number % i === 0) {
+			if (primeTest != i) {
+				count++
+				primeTest = i
+			}
+			number /= i
+		}
+		i += 2
+	}
+	// add any remaining prime factors greater than 2
+	if (number > 2) {
+		count++
+	}
+	return count
+}
+
+// with primes for caching
+fun primeFactorsCount(n: Int, primes: List<Int>): Int {
+	var number = n
+	var count = 0
+	var primeTest = -1
+	val rootOfN = sqrt(n.toDouble()).toInt()
+	for (prime in primes) {
+		if (prime > rootOfN) break // No need to check primes greater than the root of the number
+		while (number % prime == 0) {
+			if (primeTest != prime) {
+				count++
+				primeTest = prime
+			}
+			number /= prime
+		}
+	}
+	// If number is a prime greater than the last prime in the list
+	if (number > 1) {
+		count++
+	}
+
+	return count
+}
+
 
 /**
  * Instead of iterating all the way up to n, you only need to go up to the square root of n. Every divisor found below
@@ -217,7 +306,7 @@ fun getUpToNPrimes(limit: Int): List<Int> {
 	return primes
 }
 
-fun getPrimesBellow(limit: Int): Pair<MutableList<Int>, BooleanArray> {
+fun getPrimesBelow(limit: Int): Pair<MutableList<Int>, BooleanArray> {
 	val sieve = getPrimesSieveBelow(limit);
 	val primes = mutableListOf<Int>()
 	for (i in 2 until sieve.size) {
@@ -294,16 +383,16 @@ fun isPanDigit(arr: IntArray): Boolean {
 		7 -> return map == 254
 		8 -> return map == 510
 		9 -> return map == 1022
-		}
-	return 	(  map == 1022 	//9digits binary 1111111110, representing digits 1 to 9 once for length of 9
-			|| map == 510	//8digits
-			|| map == 254	//7digits
-			|| map == 126	//6digits
-			|| map == 62	//5digits
-			|| map == 30	//4digits
-			|| map == 14	//3digits
-			|| map == 6		//2digits
-			|| map == 2);	//1digits
+	}
+	return (map == 1022    //9digits binary 1111111110, representing digits 1 to 9 once for length of 9
+			|| map == 510    //8digits
+			|| map == 254    //7digits
+			|| map == 126    //6digits
+			|| map == 62    //5digits
+			|| map == 30    //4digits
+			|| map == 14    //3digits
+			|| map == 6        //2digits
+			|| map == 2);    //1digits
 }
 
 fun getIntMagnitude(i: Int): Pair<Int, Int> {
@@ -321,22 +410,23 @@ fun getIntMagnitude(i: Int): Pair<Int, Int> {
 }
 
 fun getPentagonalNumbers(n: Int): Pair<IntArray, BooleanArray> {
-	var arrDict = BooleanArray(n*3*n/2) { false }
+	var arrDict = BooleanArray(n * 3 * n / 2) { false }
 	var arr = IntArray(n)
 	for (i in 1..n) {
 		val pentagonalNumber = i * (3 * i - 1) / 2
 		arrDict[pentagonalNumber] = true
-		arr[i-1] = pentagonalNumber
+		arr[i - 1] = pentagonalNumber
 	}
 	return Pair(arr, arrDict)
 }
+
 fun getHexagonalNumbers(n: Int): Pair<IntArray, BooleanArray> {
-	var arrDict = BooleanArray(n*2*n) { false }
+	var arrDict = BooleanArray(n * 2 * n) { false }
 	var arr = IntArray(n)
 	for (i in 1..n) {
 		val hexagonalNumber = i * (2 * i - 1)
 		arrDict[hexagonalNumber] = true
-		arr[i-1] = hexagonalNumber
+		arr[i - 1] = hexagonalNumber
 	}
 	return Pair(arr, arrDict)
 }

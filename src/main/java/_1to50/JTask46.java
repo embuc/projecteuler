@@ -5,13 +5,13 @@ import se.embuc.Task;
 
 import java.util.List;
 
-import static se.embuc.utils.UtilsKt.getPrimesBellow;
+import static se.embuc.utils.UtilsKt.getPrimesBelow;
 
 public class JTask46 implements Task {
 	@Override
 	public Object solve() {
 		var limit = 10_000;
-		Pair<List<Integer>, boolean[]> primesBellow = getPrimesBellow(limit);
+		Pair<List<Integer>, boolean[]> primesBellow = getPrimesBelow(limit);
 		var primes = primesBellow.getFirst();
 		var sieve = primesBellow.getSecond();
 		for (int composite = 33; composite < limit; composite += 2) {
