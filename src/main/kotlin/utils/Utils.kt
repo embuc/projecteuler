@@ -203,6 +203,31 @@ fun getPrimesSieveBelow(n: Int): BooleanArray {
 	return sievePrimes
 }
 
+fun getUpToNPrimes(limit: Int): List<Int> {
+//	Pn < n ln (n ln n) for n ≥ 6
+	val size = if (limit < 6) 13 else (limit * Math.log(limit.toDouble() * Math.log(limit.toDouble()))).toInt()
+	val sieve = getPrimesSieveBelow(size);
+	val primes = mutableListOf<Int>()
+	for (i in 2 until sieve.size) {
+		if (sieve[i]) {
+			primes.add(i)
+		}
+		if (primes.size == limit) break
+	}
+	return primes
+}
+
+fun getPrimesBellow(limit: Int): Pair<MutableList<Int>, BooleanArray> {
+	val sieve = getPrimesSieveBelow(limit);
+	val primes = mutableListOf<Int>()
+	for (i in 2 until sieve.size) {
+		if (sieve[i]) {
+			primes.add(i)
+		}
+	}
+	return Pair(primes, sieve)
+}
+
 
 fun factorialBig(n: Int): BigInteger {
 	return if (n == 0) BigInteger.ONE else BigInteger.valueOf(n.toLong()) * factorialBig(n - 1)
