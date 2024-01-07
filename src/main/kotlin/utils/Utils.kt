@@ -24,6 +24,16 @@ fun isPrime(n: Long): Boolean {
 	}
 	return true
 }
+fun isPrime(n: Int): Boolean {
+	if (n < 2) return false
+	if (n == 2) return true
+	if (n % 2 == 0) return false
+	val sqrtN = Math.sqrt(n.toDouble()).toLong()
+	for (i in 3..sqrtN step 2) {
+		if (n % i == 0L) return false
+	}
+	return true
+}
 
 fun findNextPrime(n: Long): Long {
 	var i = n + 1
@@ -358,6 +368,24 @@ fun computeNthPermutation(numbers: MutableList<Char>, n: Int): String {
 	}
 
 	return result
+}
+fun isPermutation(i: Int, j: Int): Boolean {
+	var i = i
+	var j = j
+	val digitsI = IntArray(10)
+	val digitsJ = IntArray(10)
+	while (i > 0) {
+		digitsI[i % 10]++
+		i /= 10
+	}
+	while (j > 0) {
+		digitsJ[j % 10]++
+		j /= 10
+	}
+	for (k in 0..9) {
+		if (digitsI[k] != digitsJ[k]) return false
+	}
+	return true
 }
 
 fun isPanDigit(arr: IntArray): Boolean {
