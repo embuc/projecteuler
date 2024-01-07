@@ -3,6 +3,7 @@ package se.embuc._1to50
 import se.embuc.Task
 import se.embuc.utils.getDivisorsSum
 
+// Non-Abundant Sums
 class Task23:Task {
 	override
 	fun solve(): Any {
