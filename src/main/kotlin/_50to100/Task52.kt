@@ -3,6 +3,7 @@ package se.embuc._50to100
 import se.embuc.Task
 import se.embuc.utils.isPermutation
 
+// Permuted multiples
 class Task52 : Task {
 	override fun solve(): Any {
 		var number = 123456

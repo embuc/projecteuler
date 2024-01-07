@@ -6,6 +6,7 @@ import java.util.stream.IntStream;
 
 import static se.embuc.utils.UtilsKt.isPermutation;
 
+// Permuted multiples
 public class JTask52 implements Task {
 	@Override
 	public Object solve() {
