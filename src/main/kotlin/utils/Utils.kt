@@ -333,6 +333,7 @@ fun factorialBig(n: Int): BigInteger {
 }
 
 fun factorial(n: Int): Int = if (n <= 1) 1 else n * factorial(n - 1)
+fun factorial(n: Long): Long = if (n <= 1) 1 else n * factorial(n - 1)
 
 // This method is used to find the number of permutations of a string. It will find ALL permutations, this is quite slow
 // for instance for a string of length 10(Task 24). Better to use specialized method bellow, that one is O(n)
