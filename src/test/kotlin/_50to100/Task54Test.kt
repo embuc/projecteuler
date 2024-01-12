@@ -32,9 +32,9 @@ class Task54Test {
 	@Test
 	fun shouldEvaluateHighestCard() {
 		// Highest card Ace
-		var hand = Hand("5D 8C 9S JS AC".split(" ").map { Card(it) })
+		var hand = JTask54().Hand("5D 8C 9S JS AC".split(" ").map { JTask54().Card(it) })
 	// Highest card Queen
-		var hand2 = Hand("2C 5C 7D 8S QH".split(" ").map { Card(it) })
+		var hand2 = JTask54().Hand("2C 5C 7D 8S QH".split(" ").map { JTask54().Card(it) })
 		var winner = hand.compareTo(hand2)
 		assertEquals(1, winner)
 	}
