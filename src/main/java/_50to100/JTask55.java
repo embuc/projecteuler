@@ -4,6 +4,7 @@ import se.embuc.Task;
 
 import java.math.BigInteger;
 
+// Lychrel numbers
 public class JTask55 implements Task {
 	@Override
 	public Object solve() {

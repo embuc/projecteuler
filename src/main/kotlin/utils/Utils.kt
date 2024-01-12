@@ -509,3 +509,13 @@ fun findPositiveIntegerRoot(a: Double, b: Double, c: Double): Double? {
 
 	return null
 }
+
+inline fun BigInteger.digits(): IntArray {
+	val digits = mutableListOf<Int>()
+	var number = this
+	while (number > BigInteger.ZERO) {
+		digits.add((number % BigInteger.TEN).toInt())
+		number /= BigInteger.TEN
+	}
+	return digits.toIntArray()
+}
