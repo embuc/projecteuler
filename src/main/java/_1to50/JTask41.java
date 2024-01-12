@@ -2,7 +2,7 @@ package _1to50;
 
 import se.embuc.Task;
 
-import static se.embuc.utils.UtilsKt.getPrimesSieveBelow;
+import static se.embuc.utils.PrimesKt.getPrimesSieveBelow;
 import static se.embuc.utils.UtilsKt.isPanDigit;
 
 // Pandigital prime

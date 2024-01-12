@@ -7,7 +7,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import static se.embuc.utils.UtilsKt.getPrimesBelow;
+import static se.embuc.utils.PrimesKt.getPrimesBelow;
 
 // Prime digit replacements
 public class JTask51 implements Task {

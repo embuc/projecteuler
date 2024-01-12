@@ -5,7 +5,7 @@ import se.embuc.Task;
 
 import java.util.List;
 
-import static se.embuc.utils.UtilsKt.getPrimesBelow;
+import static se.embuc.utils.PrimesKt.getPrimesBelow;
 
 public class JTask46 implements Task {
 	@Override

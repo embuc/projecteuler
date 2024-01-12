@@ -3,8 +3,8 @@ package _1to50;
 import kotlin.Pair;
 import se.embuc.Task;
 
+import static se.embuc.utils.PrimesKt.getPrimesSieveBelow;
 import static se.embuc.utils.UtilsKt.getIntMagnitude;
-import static se.embuc.utils.UtilsKt.getPrimesSieveBelow;
 
 //Truncatable primes
 public class JTask37 implements Task {

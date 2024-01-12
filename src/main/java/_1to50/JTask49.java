@@ -2,8 +2,8 @@ package _1to50;
 
 import se.embuc.Task;
 
+import static se.embuc.utils.PrimesKt.isPrime;
 import static se.embuc.utils.UtilsKt.isPermutation;
-import static se.embuc.utils.UtilsKt.isPrime;
 
 // Prime permutations
 public class JTask49 implements Task {

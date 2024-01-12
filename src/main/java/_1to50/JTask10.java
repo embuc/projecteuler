@@ -3,7 +3,7 @@ package _1to50;
 import org.jetbrains.annotations.NotNull;
 import se.embuc.Task;
 
-import static se.embuc.utils.UtilsKt.sumOfPrimesBelow;
+import static se.embuc.utils.PrimesKt.sumOfPrimesBelow;
 
 /** Summation of primes */
 public class JTask10 implements Task {

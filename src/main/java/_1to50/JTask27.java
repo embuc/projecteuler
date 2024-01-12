@@ -3,7 +3,7 @@ package _1to50;
 import se.embuc.Task;
 
 import static java.lang.Math.sqrt;
-import static se.embuc.utils.UtilsKt.isPrime;
+import static se.embuc.utils.PrimesKt.isPrime;
 
 // Quadratic Primes
 public class JTask27 implements Task {

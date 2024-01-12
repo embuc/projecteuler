@@ -1,7 +1,7 @@
 package _1to50;
 
 import se.embuc.Task;
-import se.embuc.utils.UtilsKt;
+import se.embuc.utils.PrimesKt;
 
 // 10001st Prime
 public class JTask7 implements Task {
@@ -9,11 +9,10 @@ public class JTask7 implements Task {
 	public Object solve() {
 		return findNthPrime(10001);
 	}
-
-
+	
 	private long findNthPrime(int nth) {
 		var limit = 2 * nth * 6 + 1;
-		var primes = UtilsKt.getPrimesSieveBelow(limit);
+		var primes = PrimesKt.getPrimesSieveBelow(limit);
 
 		var count = 2;
 		for (int i = 6; i < primes.length; i += 6) {

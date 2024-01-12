@@ -2,7 +2,7 @@ package _1to50;
 
 import se.embuc.Task;
 
-import static se.embuc.utils.UtilsKt.primeFactorsCount;
+import static se.embuc.utils.PrimesKt.primeFactorsCount;
 
 // Distinct primes factors
 public class JTask47 implements Task {
