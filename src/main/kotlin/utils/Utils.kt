@@ -349,3 +349,20 @@ inline fun BigInteger.digits(): IntArray {
 	}
 	return digits.toIntArray()
 }
+// 37,18 -> 3718 etc.
+fun concatenate(first: Int, second: Int): Int {
+	var second = second
+	var power = 1
+	while (power <= second) {
+		power *= 10
+	}
+	return first * power + second
+}
+fun concatenate(first: Long, second: Long): Long {
+	var second = second
+	var power = 1
+	while (power <= second) {
+		power *= 10
+	}
+	return first * power + second
+}
