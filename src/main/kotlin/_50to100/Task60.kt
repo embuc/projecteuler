@@ -8,32 +8,37 @@ import se.embuc.utils.isPrime
 // Prime Pair Sets
 class Task60 : Task {
 	override fun solve(): Any {
-		val (primesOrg, sieve) = getPrimesBelow(100_000_000)
+		val (primesOrg, sieve) = getPrimesBelow(90_000_000)
 		val limit = 1100
 		val primes = primesOrg.take(limit)
 		var sums = mutableSetOf<Int>()
-		for (prime in primes) {
-			for (prime2 in primes) {
-				if (prime2 <= prime) continue
-				if (isConcatPrime(prime, prime2, sieve) && isConcatPrime(prime2, prime, sieve)) {
-					for (prime3 in primes) {
-						if (prime3 <= prime2) continue
-						if (isConcatPrime(prime3, prime, sieve) && isConcatPrime(prime3, prime2, sieve)
-							&& isConcatPrime(prime, prime3, sieve) && isConcatPrime(prime2, prime3, sieve)
+		for (p1 in 0..primes.size - 5) {
+			var restP1 = primes.get(p1) % 3
+			for (p2 in p1+1..primes.size - 4) {
+				var restP2 = primes.get(p2) % 3
+				if (restP2 != restP1) continue
+				if (isConcatPrime(primes.get(p1), primes.get(p2), sieve) && isConcatPrime(primes.get(p2), primes.get(p1), sieve)) {
+					for (p3 in p2+1..primes.size - 3) {
+						var restP3 = primes.get(p3) % 3
+						if (restP3 != restP2) continue
+						if (isConcatPrime(primes.get(p3), primes.get(p1), sieve) && isConcatPrime(primes.get(p3), primes.get(p2), sieve)
+							&& isConcatPrime(primes.get(p1), primes.get(p3), sieve) && isConcatPrime(primes.get(p2), primes.get(p3), sieve)
 						) {
-							for (prime4 in primes) {
-								if (prime4 <= prime3) continue
-								if (isConcatPrime(prime4, prime, sieve) && isConcatPrime(prime4, prime2,sieve)
-									&& isConcatPrime(prime4, prime3, sieve) && isConcatPrime(prime,	prime4, sieve)
-									&& isConcatPrime(prime2, prime4, sieve) && isConcatPrime(prime3, prime4, sieve)
+							for (p4 in p3+1..primes.size - 2) {
+								var restP4 = primes.get(p4) % 3
+								if (restP4 != restP3) continue
+								if (isConcatPrime(primes.get(p4), primes.get(p1), sieve) && isConcatPrime(primes.get(p4), primes.get(p2), sieve)
+									&& isConcatPrime(primes.get(p4), primes.get(p3), sieve) && isConcatPrime(primes.get(p1), primes.get(p4), sieve)
+									&& isConcatPrime(primes.get(p2), primes.get(p4), sieve) && isConcatPrime(primes.get(p3), primes.get(p4), sieve)
 								) {
-									for (prime5 in primes) {
-										if (prime5 <= prime4) continue
-										if (isConcatPrime(prime5, prime, sieve) && isConcatPrime(prime5, prime2, sieve)
-											&& isConcatPrime(prime5, prime3, sieve) && isConcatPrime(prime5, prime4, sieve)
-											&& isConcatPrime(prime, prime5, sieve) && isConcatPrime(prime2,	prime5,	sieve)
-											&& isConcatPrime(prime3, prime5, sieve) && isConcatPrime(prime4, prime5, sieve)) {
-											sums.add(prime + prime2 + prime3 + prime4 + prime5)
+									for (p5 in p4+1..primes.size - 1) {
+										var restP5 = primes.get(p5) % 3
+										if (restP5 != restP4) continue
+										if (isConcatPrime(primes.get(p5), primes.get(p1), sieve) && isConcatPrime(primes.get(p5), primes.get(p2), sieve)
+											&& isConcatPrime(primes.get(p5), primes.get(p3), sieve) && isConcatPrime(primes.get(p5), primes.get(p4), sieve)
+											&& isConcatPrime(primes.get(p1), primes.get(p5), sieve) && isConcatPrime(primes.get(p2), primes.get(p5), sieve)
+											&& isConcatPrime(primes.get(p3), primes.get(p5), sieve) && isConcatPrime(primes.get(p4), primes.get(p5), sieve)) {
+											sums.add(primes.get(p1) + primes.get(p2) + primes.get(p3) + primes.get(p4) + primes.get(p5))
 										}
 									}
 								}
