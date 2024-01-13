@@ -9,7 +9,7 @@ public class JTask7 implements Task {
 	public Object solve() {
 		return findNthPrime(10001);
 	}
-	
+
 	private long findNthPrime(int nth) {
 		var limit = 2 * nth * 6 + 1;
 		var primes = PrimesKt.getPrimesSieveBelow(limit);
