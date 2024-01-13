@@ -2,13 +2,13 @@ package se.embuc._50to100
 
 import se.embuc.Task
 import se.embuc.utils.concatenate
-import se.embuc.utils.getPrimesBelow
 import se.embuc.utils.isPrime
+import se.embuc.utils.readPrimesFromFile
 
 // Prime Pair Sets
 class Task60 : Task {
 	override fun solve(): Any {
-		val (primesOrg, sieve) = getPrimesBelow(90_000_000)
+		val (primesOrg, sieve) = readPrimesFromFile("primesBelow100_000_000.dat")
 		val limit = 1100
 		val primes = primesOrg.take(limit)
 		var sums = mutableSetOf<Int>()

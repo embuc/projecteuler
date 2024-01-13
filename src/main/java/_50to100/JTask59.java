@@ -6,7 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static se.embuc.utils.UtilsKt.readFileAsString;
+import static se.embuc.utils.FilesKt.readFileAsString;
 
 // XOR Decryption
 public class JTask59 implements Task {

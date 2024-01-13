@@ -1,19 +1,9 @@
 package se.embuc.utils
 
-import java.io.File
 import java.math.BigInteger
 import kotlin.math.abs
 import kotlin.math.sqrt
 
-fun readFileAsString(path: String): String {
-	return File("src/test/resources/$path").inputStream().use { return it.bufferedReader().readText() }
-}
-
-fun readFileFromClassPathAsString(path: String): String {
-	val inputStream = Thread.currentThread().contextClassLoader.getResourceAsStream(path)
-		?: throw IllegalArgumentException("File not found")
-	return inputStream.bufferedReader().use { it.readText() }
-}
 
 // this one is neat and simple but not fast for many numbers to check
 fun isPalindrome(n: Int): Boolean {

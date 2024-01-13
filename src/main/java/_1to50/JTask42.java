@@ -4,8 +4,8 @@ import se.embuc.Task;
 
 import java.util.Arrays;
 
+import static se.embuc.utils.FilesKt.readFileAsString;
 import static se.embuc.utils.UtilsKt.getTriangleNumbersUpTo;
-import static se.embuc.utils.UtilsKt.readFileAsString;
 
 // Coded triangle numbers
 public class JTask42 implements Task {

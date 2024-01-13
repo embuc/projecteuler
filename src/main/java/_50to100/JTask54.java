@@ -7,7 +7,7 @@ import se.embuc.Task;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static se.embuc.utils.UtilsKt.readFileAsString;
+import static se.embuc.utils.FilesKt.readFileAsString;
 
 // Poker Hands
 public class JTask54 implements Task {
