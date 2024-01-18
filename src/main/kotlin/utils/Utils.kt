@@ -76,6 +76,17 @@ fun getTriangleNumbersUpTo(n: Int): BooleanArray {
 	}
 	return triangleNumbers
 }
+fun getSquareNumber(n: Long): Long = n * n
+fun getSquareNumber(n: Int): Int = n * n
+fun getPentagonalNumber(n: Long): Long = n * (3 * n - 1) / 2
+fun getPentagonalNumber(n: Int): Int = n * (3 * n - 1) / 2
+fun getHexagonalNumber(n: Long): Long = n * (2 * n - 1)
+fun getHexagonalNumber(n: Int): Int = n * (2 * n - 1)
+fun getHeptagonalNumber(n: Long): Long = n * (5 * n - 3) / 2
+fun getHeptagonalNumber(n: Int): Int = n * (5 * n - 3) / 2
+fun getOctagonalNumber(n: Long): Long = n * (3 * n - 2)
+fun getOctagonalNumber(n: Int): Int = n * (3 * n - 2)
+
 
 /* not efficient for large n but nice for debug and printing */
 fun getDivisors(n: Long): List<Long> {
