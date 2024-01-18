@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 import static se.embuc.utils.UtilsKt.*;
 
 // Cyclical figurate numbers
+// Soliution using graph and dfs - its ~3X faster than backtracking (kotlin version).
 public class JTask61 implements Task {
 
 	enum NumType {
@@ -24,7 +25,7 @@ public class JTask61 implements Task {
 
 	protected void dfs(Map<Node, List<Node>> graph, Node current, int targetLength, Set<Node> visited,
 			List<Node> currentPath, Set<List<Node>> paths) {
-//		break if right size and circular
+		//	break if right size and circular
 		if (currentPath.size() == targetLength &&
 				currentPath.get(0).value / 100 == currentPath.get(currentPath.size() - 1).value % 100) {
 			paths.add(new ArrayList<>(currentPath)); // Add a copy of the current path
@@ -74,7 +75,7 @@ public class JTask61 implements Task {
 		}
 		var graph = buildGraph(triangles, squares, pentagonals, hexagonals, heptagonals, octagonals);
 		var paths = findPathsOfLength(graph, 6);
-		//there will be 6 paths but they are all the same only starting from different sets
+		//there will be 6 paths, but they are all the same only starting from different sets
 		return paths.iterator().next().stream().mapToInt(Node::value).sum();
 	}
 

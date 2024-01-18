@@ -4,6 +4,9 @@ import se.embuc.Task
 import se.embuc.utils.*
 
 // Cyclical figurate numbers
+// This problem is solved by using backtracking to find all possible cycles. The solution is not very efficient, but it
+// works. In terms of code its shorter and perhaps easier to understand, I still prefer the Java solution using graphs
+// as it seems clearer to me what is happening compared to recursing and backtracking.
 class Task61 : Task {
 
 	override fun solve(): Any {
@@ -37,16 +40,10 @@ class Task61 : Task {
 			if (octagonal > 1000 && octagonal < 10_000)
 				octagonals.add(octagonal)
 		}
-		println("triangles: ${triangles.size}")
-		println("squares: ${squares.size}")
-		println("pentagonals: ${pentagonals.size}")
-		println("hexagonals: ${hexagonals.size}")
-		println("heptagonals: ${heptagonals.size}")
-		println("octagonals: ${octagonals.size}")
 
 		val cyclicNumbers = findCyclicNumbers(listOf(triangles, squares, pentagonals, hexagonals, heptagonals, octagonals))
-		println(cyclicNumbers)
-		println("### " + intArrayOf(1281, 8128, 2882, 8256, 5625, 2512).sum())
+//		println(cyclicNumbers)
+//		println("### " + intArrayOf(1281, 8128, 2882, 8256, 5625, 2512).sum())
 		return cyclicNumbers.last().sum()
 	}
 	fun isValidCycle(path: List<Int>): Boolean {
@@ -65,7 +62,6 @@ class Task61 : Task {
 	): List<List<Int>> {
 		if (currentPath.size == lists.size && isValidCycle(currentPath)) {
 			results.add(ArrayList(currentPath)) // Found a valid cycle
-			println("Found cycle: $currentPath")
 		} else if (currentPath.size < lists.size) {
 			for ((index, list) in lists.withIndex()) {
 				if (index !in usedSets) { // Avoid using the same list twice
