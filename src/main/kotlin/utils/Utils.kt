@@ -219,6 +219,26 @@ fun isPermutation(i: Int, j: Int): Boolean {
 	}
 	return true
 }
+fun isPermutation(i: Long, j: Long): Boolean {
+	var i = i
+	var j = j
+	val digitsI = LongArray(getLongMagnitude(i).second.toInt())
+	val digitsJ = LongArray(getLongMagnitude(j).second.toInt())
+	while (i > 0) {
+		digitsI[(i % 10).toInt()]++
+		i /= 10
+	}
+	while (j > 0) {
+		digitsJ[(j % 10).toInt()]++
+		j /= 10
+	}
+	for (k in 0..9) {
+		if (digitsI[k] != digitsJ[k]) return false
+	}
+	return true
+}
+
+
 
 fun isPanDigit(arr: IntArray): Boolean {
 	var map = 0 // (binary 0000000000) no digits encountered yet
@@ -259,6 +279,19 @@ fun getIntMagnitude(i: Int): Pair<Int, Int> {
 	var n = i
 	var log = 1
 	var exp = 1
+	// Loop (Determining the Magnitude): The while loop increases exp by multiplying it by 10 each time
+	// until 10*exp is >= than n. Simultaneously, log is incremented to track the number of digits in n.
+	// For example, if n is 1234, after this loop, exp will be 1000 and log will be 4.
+	while (10 * exp <= n) {
+		exp *= 10
+		++log
+	}
+	return Pair(exp, log)
+}
+fun getLongMagnitude(i: Long): Pair<Long, Long> {
+	var n = i
+	var log = 1L
+	var exp = 1L
 	// Loop (Determining the Magnitude): The while loop increases exp by multiplying it by 10 each time
 	// until 10*exp is >= than n. Simultaneously, log is incremented to track the number of digits in n.
 	// For example, if n is 1234, after this loop, exp will be 1000 and log will be 4.
@@ -340,7 +373,23 @@ fun findPositiveIntegerRoot(a: Double, b: Double, c: Double): Double? {
 
 	return null
 }
-
+inline fun Long.digitsCount(): IntArray {
+	var map = IntArray(10) // (0, 1, 2 ....) no digits encountered yet
+	val digits = this.digits();
+	for (number in digits) {
+		map[number]++
+	}
+	return map
+}
+inline fun Long.digits(): IntArray{
+	val digits = mutableListOf<Int>()
+	var number = this
+	while (number > 0L) {
+		digits.add((number % 10L).toInt())
+		number /= 10L
+	}
+	return digits.toIntArray()
+}
 inline fun BigInteger.digits(): IntArray {
 	val digits = mutableListOf<Int>()
 	var number = this
