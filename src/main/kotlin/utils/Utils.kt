@@ -399,6 +399,16 @@ inline fun BigInteger.digits(): IntArray {
 	}
 	return digits.toIntArray()
 }
+inline fun Int.pow(exponent: Int): Int {
+	require(exponent >= 0) { "Exponent must be non-negative" }
+
+	var result = 1
+	var base = this
+	for (i in 1..exponent) {
+		result *= base
+	}
+	return result
+}
 // 37,18 -> 3718 etc.
 fun concatenate(first: Int, second: Int): Int {
 	var second = second
