@@ -76,6 +76,7 @@ fun getTriangleNumbersUpTo(n: Int): BooleanArray {
 	}
 	return triangleNumbers
 }
+
 fun getSquareNumber(n: Long): Long = n * n
 fun getSquareNumber(n: Int): Int = n * n
 fun getPentagonalNumber(n: Long): Long = n * (3 * n - 1) / 2
@@ -201,6 +202,7 @@ fun computeNthPermutation(numbers: MutableList<Char>, n: Int): String {
 
 	return result
 }
+
 fun isPermutation(i: Int, j: Int): Boolean {
 	var i = i
 	var j = j
@@ -219,6 +221,7 @@ fun isPermutation(i: Int, j: Int): Boolean {
 	}
 	return true
 }
+
 fun isPermutation(i: Long, j: Long): Boolean {
 	var i = i
 	var j = j
@@ -237,7 +240,6 @@ fun isPermutation(i: Long, j: Long): Boolean {
 	}
 	return true
 }
-
 
 
 fun isPanDigit(arr: IntArray): Boolean {
@@ -288,6 +290,7 @@ fun getIntMagnitude(i: Int): Pair<Int, Int> {
 	}
 	return Pair(exp, log)
 }
+
 fun getLongMagnitude(i: Long): Pair<Long, Long> {
 	var n = i
 	var log = 1L
@@ -373,6 +376,7 @@ fun findPositiveIntegerRoot(a: Double, b: Double, c: Double): Double? {
 
 	return null
 }
+
 inline fun Long.digitsCount(): IntArray {
 	var map = IntArray(10) // (0, 1, 2 ....) no digits encountered yet
 	val digits = this.digits();
@@ -381,7 +385,8 @@ inline fun Long.digitsCount(): IntArray {
 	}
 	return map
 }
-inline fun Long.digits(): IntArray{
+
+inline fun Long.digits(): IntArray {
 	val digits = mutableListOf<Int>()
 	var number = this
 	while (number > 0L) {
@@ -390,6 +395,7 @@ inline fun Long.digits(): IntArray{
 	}
 	return digits.toIntArray()
 }
+
 inline fun BigInteger.digits(): IntArray {
 	val digits = mutableListOf<Int>()
 	var number = this
@@ -399,6 +405,7 @@ inline fun BigInteger.digits(): IntArray {
 	}
 	return digits.toIntArray()
 }
+
 inline fun Int.pow(exponent: Int): Int {
 	require(exponent >= 0) { "Exponent must be non-negative" }
 
@@ -409,6 +416,7 @@ inline fun Int.pow(exponent: Int): Int {
 	}
 	return result
 }
+
 // 37,18 -> 3718 etc.
 fun concatenate(first: Int, second: Int): Int {
 	var second = second
@@ -418,6 +426,7 @@ fun concatenate(first: Int, second: Int): Int {
 	}
 	return first * power + second
 }
+
 fun concatenate(first: Long, second: Long): Long {
 	var second = second
 	var power = 1
@@ -425,4 +434,40 @@ fun concatenate(first: Long, second: Long): Long {
 		power *= 10
 	}
 	return first * power + second
+}
+
+data class Fraction(var numerator: BigInteger, var denominator: BigInteger)
+
+fun solvePell(n: Int): Fraction? {
+	val initialRoot = sqrt(n.toDouble()).toInt()
+	var y = initialRoot
+	var z = 1
+	var r = initialRoot * 2
+	var fraction1 = Fraction(BigInteger.ONE, BigInteger.ZERO)
+	var fraction2 = Fraction(BigInteger.ZERO, BigInteger.ONE)
+	var resultFraction = Fraction(BigInteger.ZERO, BigInteger.ZERO)
+	while (true) {
+		y = r * z - y
+		z = (n - y * y) / z
+		r = (initialRoot + y) / z
+
+		nextNum(fraction1, r)
+		nextNum(fraction2, r)
+		var invFraction = Fraction(fraction1.denominator, fraction2.denominator)
+		nextNum(invFraction, initialRoot)
+		resultFraction.numerator = invFraction.denominator
+		resultFraction.denominator = fraction2.denominator
+
+		if (resultFraction.numerator * resultFraction.numerator -
+			n.toBigInteger() * resultFraction.denominator * resultFraction.denominator == BigInteger.ONE) {
+			return Fraction(resultFraction.numerator, resultFraction.denominator)
+		}
+	}
+	return null
+}
+
+private fun nextNum(f: Fraction, term: Int) {
+	var temp = f.numerator
+	f.numerator = f.denominator
+	f.denominator = f.denominator * BigInteger.valueOf(term.toLong()) + temp
 }

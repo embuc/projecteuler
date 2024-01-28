@@ -2,6 +2,7 @@ package se.embuc._50to100
 
 import se.embuc.Task
 
+// Odd period square roots
 class Task64:Task {
 	override fun solve(): Any {
 		var resultCount = 0
