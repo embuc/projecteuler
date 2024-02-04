@@ -12,45 +12,44 @@ import java.util.stream.IntStream;
 public class JTask68 implements Task {
 	@Override
 	public Object solve() {
-		return findMagicRing(10);
+		return findValidGonRing(10);
 	}
 
-	String findMagicRing(int n) {
-		var values = IntStream.rangeClosed(1, n).boxed().collect(Collectors.toList());
+	public static String findValidGonRing(int n) {
+		List<Integer> values = new ArrayList<>();
+		for (int i = 1; i <= n; i++) {
+			values.add(i);
+		}
 		Collections.reverse(values);
-		for (var permutation :lexicographicalPermutations(values)) {
-			var split = n / 2;
-			var outer = permutation.subList(0, split);
-			var inner = permutation.subList(split, permutation.size());
+		return findValidGonRing(values, new ArrayList<>(), n / 2);
+	}
+
+	// Recursive method to generate permutations and immediately check for validity, this is as close to Kotlin sequence
+	// as we can come.
+	private static String findValidGonRing(List<Integer> available, List<Integer> current, int split) {
+		if (available.isEmpty()) {
+			List<Integer> outer = new ArrayList<>(current.subList(0, split));
+			List<Integer> inner = new ArrayList<>(current.subList(split, current.size()));
 			if (isValidGonRing(outer, inner)) {
 				return formatGonRing(outer, inner);
 			}
-		}
-		return null;
-	}
-
-	public static List<List<Integer>> lexicographicalPermutations(List<Integer> list) {
-		if (list.size() == 1) {
-			List<List<Integer>> singleResult = new ArrayList<>();
-			singleResult.add(new ArrayList<>(list));
-			return singleResult;
+			return null;
 		} else {
-			List<List<Integer>> result = new ArrayList<>();
-			for (int i = 0; i < list.size(); i++) {
-				List<Integer> rest = new ArrayList<>(list);
-				rest.remove(i);
-				for (List<Integer> end : lexicographicalPermutations(rest)) {
-					List<Integer> perm = new ArrayList<>();
-					perm.add(list.get(i));
-					perm.addAll(end);
-					result.add(perm);
+			for (int i = 0; i < available.size(); i++) {
+				List<Integer> nextAvailable = new ArrayList<>(available);
+				List<Integer> nextCurrent = new ArrayList<>(current);
+				nextCurrent.add(nextAvailable.remove(i));
+				String result = findValidGonRing(nextAvailable, nextCurrent, split);
+				if (result != null) {
+					// Found a valid configuration, return it
+					return result;
 				}
 			}
-			return result;
+			return null;
 		}
 	}
 
-	public static boolean isValidGonRing(java.util.List<Integer> outer, List<Integer> inner) {
+	private static boolean isValidGonRing(List<Integer> outer, List<Integer> inner) {
 		int total = outer.get(0) + inner.get(0) + inner.get(1);
 		for (int i = 1; i < outer.size(); i++) {
 			if (outer.get(i) + inner.get(i) + inner.get((i + 1) % inner.size()) != total) {
@@ -60,7 +59,7 @@ public class JTask68 implements Task {
 		return true;
 	}
 
-	public static String formatGonRing(List<Integer> outer, List<Integer> inner) {
+	private static String formatGonRing(List<Integer> outer, List<Integer> inner) {
 		int rot = IntStream.range(0, outer.size())
 				.reduce((i, j) -> outer.get(i) < outer.get(j) ? i : j)
 				.orElse(0);
