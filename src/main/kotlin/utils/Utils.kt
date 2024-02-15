@@ -471,3 +471,20 @@ private fun nextNum(f: Fraction, term: Int) {
 	f.numerator = f.denominator
 	f.denominator = f.denominator * BigInteger.valueOf(term.toLong()) + temp
 }
+
+fun phi(n: Int): Int {
+	var n = n
+	var result = n
+
+	var i = 2
+	while (i * i <= n) {
+		if (n % i == 0) {
+			while (n % i == 0) n /= i
+			result -= result / i
+		}
+		i++
+	}
+
+	if (n > 1) result -= result / n
+	return result
+}

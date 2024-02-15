@@ -1,6 +1,7 @@
 package se.embuc._50to100
 
 import se.embuc.Task
+import se.embuc.utils.phi
 
 // Totient maximum
 class Task69 : Task {
@@ -20,20 +21,5 @@ class Task69 : Task {
 	}
 
 //	Using euler's totient function and avoiding floating point division
-	fun phi(n: Int): Int {
-		var n = n
-		var result = n
 
-		var i = 2
-		while (i * i <= n) {
-			if (n % i == 0) {
-				while (n % i == 0) n /= i
-				result -= result / i
-			}
-			i++
-		}
-
-		if (n > 1) result -= result / n
-		return result
-	}
 }
