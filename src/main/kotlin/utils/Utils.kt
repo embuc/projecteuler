@@ -1,6 +1,7 @@
 package se.embuc.utils
 
 import java.math.BigInteger
+import java.util.*
 import kotlin.math.abs
 import kotlin.math.sqrt
 
@@ -471,7 +472,7 @@ private fun nextNum(f: Fraction, term: Int) {
 	f.numerator = f.denominator
 	f.denominator = f.denominator * BigInteger.valueOf(term.toLong()) + temp
 }
-
+//Euler's totient function(phi) counts the positive integers up to a given integer n that are relatively prime to n
 fun phi(n: Int): Int {
 	var n = n
 	var result = n
@@ -487,4 +488,34 @@ fun phi(n: Int): Int {
 
 	if (n > 1) result -= result / n
 	return result
+}
+fun calculateTotientSum(n: Int): Long {
+	val phi = IntArray(n + 1)
+	for (i in 0..n) {
+		phi[i] = i // Initialize phi[i] to i
+	}
+
+	val isPrime = BooleanArray(n + 1)
+	Arrays.fill(isPrime, true)
+	isPrime[1] = false
+	isPrime[0] = isPrime[1] // 0 and 1 are not prime
+
+	for (i in 2..n) {
+		if (isPrime[i]) {
+			phi[i] = i - 1 // phi(prime) = prime - 1
+			var j = 2
+			while (i * j <= n) {
+				isPrime[i * j] = false // Mark multiples of i as not prime
+				phi[i * j] = (phi[i * j] / i) * (i - 1) // Update phi value
+				j++
+			}
+		}
+	}
+
+	var sum: Long = 0
+	for (i in 2..n) {
+		sum += phi[i].toLong() // Sum phi values
+	}
+
+	return sum
 }
