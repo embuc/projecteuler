@@ -168,6 +168,20 @@ fun factorialBig(n: Int): BigInteger {
 fun factorial(n: Int): Int = if (n <= 1) 1 else n * factorial(n - 1)
 fun factorial(n: Long): Long = if (n <= 1) 1 else n * factorial(n - 1)
 
+fun factorialUnder10(n: Int): Int = when (n) {
+	0 -> 1
+	1 -> 1
+	2 -> 2
+	3 -> 6
+	4 -> 24
+	5 -> 120
+	6 -> 720
+	7 -> 5040
+	8 -> 40320
+	9 -> 362880
+	else -> 0
+}
+
 // This method is used to find the number of permutations of a string. It will find ALL permutations, this is quite slow
 // for instance for a string of length 10(Task 24). Better to use specialized method bellow, that one is O(n)
 fun String.permutations(): List<String> {
@@ -393,6 +407,16 @@ inline fun Long.digits(): IntArray {
 	while (number > 0L) {
 		digits.add((number % 10L).toInt())
 		number /= 10L
+	}
+	return digits.toIntArray()
+}
+
+inline fun Int.digits(): IntArray {
+	val digits = mutableListOf<Int>()
+	var number = this
+	while (number > 0L) {
+		digits.add((number % 10).toInt())
+		number /= 10
 	}
 	return digits.toIntArray()
 }
