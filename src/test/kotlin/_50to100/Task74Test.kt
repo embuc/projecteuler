@@ -9,6 +9,6 @@ class Task74Test {
 	@Test
 	fun solve() {
 		assertEquals(402, Task74().solve())
-//		assertEquals(402, JTask74().solve())
+		assertEquals(402, JTask74().solve())
 	}
 }
