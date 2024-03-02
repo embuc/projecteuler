@@ -24,3 +24,4 @@ class DynamicDirectedGraph {
 		return stack.asReversed()
 	}
 }
+
