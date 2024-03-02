@@ -1,6 +1,5 @@
 package _50to100;
 
-import lombok.val;
 import se.embuc.Task;
 
 import java.util.Arrays;
@@ -11,7 +10,7 @@ import static se.embuc.utils.FilesKt.readFileAsString;
 public class JTask82 implements Task {
 	@Override
 	public Object solve() {
-		val map = readFileAsString("82_matrix.txt")
+		var map = readFileAsString("82_matrix.txt")
 				.lines()
 				.map(line -> Arrays.stream(line.split(","))
 						.mapToInt(Integer::parseInt)
