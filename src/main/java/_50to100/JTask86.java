@@ -2,7 +2,7 @@ package _50to100;
 
 import se.embuc.Task;
 
-// Cuboid route - this is a better solution provided ßby the forum
+// Cuboid route - this is a better solution provided by the forum
 public class JTask86 implements Task {
 
 	@Override
