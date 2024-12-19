@@ -17,7 +17,7 @@ class Task37Test {
 	@Ignore
 	@Test
 	fun checkIsTrucatablePrime() {
-		val sieve = getPrimesSieveBelow(1_000_000);
+		val sieve = getPrimesSieveBelow(1_000_000)
 		assertFalse(Task37().isTruncatablePrime(59, sieve))
 		assertTrue(Task37().isTruncatablePrime(53, sieve))
 		assertTrue(Task37().isTruncatablePrime(23, sieve))

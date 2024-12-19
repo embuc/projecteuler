@@ -17,7 +17,7 @@ class Task66 : Task {
 			if (isPerfectSquare(n)) {
 				continue
 			}
-			val x = solvePell(n)?.numerator
+			val x = solvePell(n).numerator
 			if (x != null) {
 				if (x > maxX) {
 					maxX = x

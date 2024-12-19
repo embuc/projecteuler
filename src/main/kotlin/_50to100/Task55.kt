@@ -6,7 +6,7 @@ import java.math.BigInteger
 // Lychrel Numbers
 class Task55 : Task {
 	override fun solve(): Any {
-		var count = 0;
+		var count = 0
 		for (i in 1..10000) {
 			if (isLychrel(i.toBigInteger())) {
 				count++

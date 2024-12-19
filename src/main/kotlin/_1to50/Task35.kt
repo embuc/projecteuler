@@ -8,14 +8,14 @@ import se.embuc.utils.getPrimesSieveBelow
 class Task35 : Task {
 
 	override fun solve(): Any {
-		val primes = getPrimesSieveBelow(1_000_000);
-		var count = 2; // 2 and 3 are circular primes
+		val primes = getPrimesSieveBelow(1_000_000)
+		var count = 2 // 2 and 3 are circular primes
 		for (i in 6 until primes.size step 6) { // utilize the fact that all primes > 3 are of the form 6k +/- 1
 			if (primes[i - 1]) {
-				count += rotateAndCheck(i - 1, primes);
+				count += rotateAndCheck(i - 1, primes)
 			}
 			if (primes[i + 1]) {
-				count += rotateAndCheck(i + 1, primes);
+				count += rotateAndCheck(i + 1, primes)
 			}
 		}
 		return count

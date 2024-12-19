@@ -70,7 +70,7 @@ class Task75: Task {
 	}
 
 	override fun solve(): Any {
-		return generatePythagoreanTriples(1_500_000);
+		return generatePythagoreanTriples(1_500_000)
 	}
 
 }

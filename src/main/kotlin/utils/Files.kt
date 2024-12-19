@@ -4,7 +4,7 @@ import java.io.*
 import java.util.*
 
 fun readFileAsString(path: String): String {
-	return File("src/test/resources/$path").inputStream().use { return it.bufferedReader().readText() }
+	File("src/test/resources/$path").inputStream().use { return it.bufferedReader().readText() }
 }
 
 fun readFileFromClassPathAsString(path: String): String {

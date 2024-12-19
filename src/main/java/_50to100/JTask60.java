@@ -63,6 +63,6 @@ public class JTask60 implements Task {
 
 	private boolean isConcatPrime(int prime, int prime2, boolean [] sieve) {
 		val concat = concatenate(prime, prime2);
-		return (concat < sieve.length) ? sieve[(int)concat] : isPrime(concat);
+		return (concat < sieve.length) ? sieve[concat] : isPrime(concat);
 	}
 }

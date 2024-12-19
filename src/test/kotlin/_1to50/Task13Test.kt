@@ -112,6 +112,6 @@ class Task13Test {
 	fun solve() {
 		assertEquals("5537376230", Task13(input).solve())
 		//the whole number just for fun, but above is the answer
-		assertEquals("5537376230390876637302048746832985971773659831892672", _1to50.JTask13(input).solve())
+		assertEquals("5537376230390876637302048746832985971773659831892672", JTask13(input).solve())
 	}
 }

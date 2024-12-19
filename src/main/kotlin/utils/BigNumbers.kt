@@ -22,7 +22,7 @@ import java.math.RoundingMode
  * @throws ArithmeticException if 'value' is negative, as the square root of a negative number is not defined in the real numbers.
  */
 fun sqrt(value: BigDecimal, scale: Int): BigDecimal {
-	if (value.compareTo(BigDecimal.ZERO) < 0) {
+	if (value < BigDecimal.ZERO) {
 		throw IllegalArgumentException("Square root of negative value")
 	}
 
@@ -30,7 +30,6 @@ fun sqrt(value: BigDecimal, scale: Int): BigDecimal {
 	val mc = MathContext(scale + 10, RoundingMode.HALF_UP)
 
 	// Initial guess can be the half of the value's scale or a fixed starting point like 1 for non-zero values.
-	var x0 = BigDecimal("1", mc)
 	if (value.compareTo(BigDecimal.ZERO) == 0) {
 		return BigDecimal.ZERO.setScale(scale, RoundingMode.HALF_UP) // Directly return 0 for sqrt(0)
 	}

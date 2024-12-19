@@ -17,7 +17,7 @@ import java.math.BigInteger
  */
 class Task65:Task {
 	override fun solve(): Any {
-		val (num, den) = computeEConvergent(100)
+		val (num, _) = computeEConvergent(100)
 		return num.toString().map { it.toString().toInt() }.sum()
 	}
 

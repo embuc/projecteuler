@@ -8,7 +8,7 @@ import se.embuc.utils.readFileAsString
 class Task79:Task {
 	override fun solve(): Any {
 		val graph = DynamicDirectedGraph()
-		val codes = readFileAsString("79_keylog.txt").lines().forEach() {
+		readFileAsString("79_keylog.txt").lines().forEach {
 			graph.addEdge(it[0] - '0', it[1] - '0')
 			graph.addEdge(it[1] - '0', it[2] - '0')
 		}

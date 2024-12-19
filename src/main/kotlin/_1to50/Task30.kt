@@ -8,7 +8,7 @@ class Task30: Task {
 	override fun solve(): Any {
 		var sum = 0
 		for (i in 2..195_000) {
-			val charArray = i.toString().toCharArray();
+			val charArray = i.toString().toCharArray()
 			var localSum = 0
 			for (j in 0 until charArray.size) {
 				val digit = charArray[j] - '0'

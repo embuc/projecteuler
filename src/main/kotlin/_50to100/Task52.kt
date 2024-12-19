@@ -14,6 +14,5 @@ class Task52 : Task {
 			}
 			number++
 		}
-		return -1
 	}
 }

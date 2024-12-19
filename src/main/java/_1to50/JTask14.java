@@ -5,8 +5,8 @@ import se.embuc.Task;
 //Longest Collatz Sequence
 public class JTask14 implements Task {
 
-	private int maxNumber = 1_000_000;
-	private long [] cache = new long[maxNumber];
+	private final int maxNumber = 1_000_000;
+	private final long [] cache = new long[maxNumber];
 
 	@Override
 	public Object solve() {

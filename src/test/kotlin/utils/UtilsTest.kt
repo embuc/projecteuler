@@ -71,13 +71,13 @@ class UtilsTest {
 
 	@Test
 	fun solvePell(){
-		assertEquals(3.toBigInteger(), solvePell(2)!!.numerator)
-		assertEquals(2.toBigInteger(), solvePell(3)!!.numerator)
-		assertEquals(9.toBigInteger(), solvePell(5)!!.numerator)
-		assertEquals(5.toBigInteger(), solvePell(6)!!.numerator)
-		assertEquals(8.toBigInteger(), solvePell(7)!!.numerator)
-		assertEquals(19.toBigInteger(), solvePell(10)!!.numerator)
-		assertEquals(649.toBigInteger(), solvePell(13)!!.numerator)
-		assertEquals(15.toBigInteger(), solvePell(14)!!.numerator)
+		assertEquals(3.toBigInteger(), solvePell(2).numerator)
+		assertEquals(2.toBigInteger(), solvePell(3).numerator)
+		assertEquals(9.toBigInteger(), solvePell(5).numerator)
+		assertEquals(5.toBigInteger(), solvePell(6).numerator)
+		assertEquals(8.toBigInteger(), solvePell(7).numerator)
+		assertEquals(19.toBigInteger(), solvePell(10).numerator)
+		assertEquals(649.toBigInteger(), solvePell(13).numerator)
+		assertEquals(15.toBigInteger(), solvePell(14).numerator)
 	}
 }

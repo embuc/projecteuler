@@ -6,7 +6,7 @@ import kotlin.system.measureTimeMillis
 interface Task {
 
 	fun solveWithTime(): Any {
-		var result = Any()
+		var result: Any
 		val timeTaken = measureTimeMillis {
 			result = solve()
 		}

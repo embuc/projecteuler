@@ -6,7 +6,7 @@ import se.embuc.utils.isPrime
 // Spiral Primes
 class Task58: Task {
 	override fun solve(): Any {
-		var count = 0;
+		var count = 0
 		var i = 1
 		while (true) {
 			val odd = 2 * i + 1
@@ -23,6 +23,5 @@ class Task58: Task {
 			if(ratio < 0.1) return sideLength
 			i++
 		}
-		return -1
 	}
 }

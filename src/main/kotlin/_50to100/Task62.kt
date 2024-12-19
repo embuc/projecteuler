@@ -10,15 +10,15 @@ import se.embuc.utils.digitsCount
 // Find the smallest cube for which exactly five permutations of its digits are cube.
 class Task62 : Task {
 	override fun solve(): Any {
-		val upper_limit = 100_000L;
+		val upper_limit = 100_000L
 		val groupes = mutableMapOf<Int, MutableList<Long>>()
 		for (i in 300..upper_limit) {
-			val cube = i * i * i;
+			val cube = i * i * i
 			val digitsCount = cube.digitsCount()
 			val digitsHash = digitsCount.contentHashCode()
-			groupes.computeIfAbsent(digitsHash, {k -> ArrayList<Long>()}).add(cube)
+			groupes.computeIfAbsent(digitsHash, {_ -> ArrayList<Long>()}).add(cube)
 			if(groupes[digitsHash]!!.size == 5) {
-				return groupes[digitsHash]!!.min()!!
+				return groupes[digitsHash]!!.min()
 			}
 		}
 		return -1

@@ -4,7 +4,11 @@ import kotlin.Pair;
 import lombok.ToString;
 import se.embuc.Task;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import static se.embuc.utils.FilesKt.readFileAsString;
@@ -131,7 +135,7 @@ public class JTask54 implements Task {
 		@Override
 		public String toString() {
 			return "cards=" + sortedCards.stream().map(i -> i.toString()).reduce(
-					(i, j) -> "" + i + "," + j) + ", score=" + score;
+					(i, j) -> i + "," + j) + ", score=" + score;
 		}
 	}
 

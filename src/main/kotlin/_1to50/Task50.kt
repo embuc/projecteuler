@@ -10,7 +10,7 @@ class Task50 : Task {
 		var max = 0
 		var maxPrime = 0
 		var maxPrimesToCheck = 0
-		var sum = 0;
+		var sum = 0
 		for (i in primes.indices) {
 			sum += primes[i]
 			maxPrimesToCheck++
@@ -19,12 +19,12 @@ class Task50 : Task {
 			}
 		}
 		for (i in primes.indices) {
-			var sum = 0
+			sum = 0
 			var count = 0
 			if(maxPrimesToCheck < count) {
 				break
 			}
-			maxPrimesToCheck--;
+			maxPrimesToCheck--
 			for (j in i until primes.size) {
 				sum += primes[j]
 				count++

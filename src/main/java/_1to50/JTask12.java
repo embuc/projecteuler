@@ -15,9 +15,9 @@ public class JTask12 implements Task {
 		while (true) {
 			long divisorCount = 0;
 			if (i % 2 == 0L) {
-				divisorCount = getDivisorsCount(i / 2) * getDivisorsCount(i + 1);
+				divisorCount = (long) getDivisorsCount(i / 2) * getDivisorsCount(i + 1);
 			} else {
-				divisorCount = getDivisorsCount(i) * getDivisorsCount((i + 1) / 2);
+				divisorCount = (long) getDivisorsCount(i) * getDivisorsCount((i + 1) / 2);
 			}
 			if (divisorCount > target) {
 				return getTriangleNumber(i);

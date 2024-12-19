@@ -19,6 +19,6 @@ public class JTask6 implements Task {
 
 	private long squareOfSum(int i) {
 		int sum = IntStream.rangeClosed(1, i).sum();
-		return sum * sum;
+		return (long) sum * sum;
 	}
 }

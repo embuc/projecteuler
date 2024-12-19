@@ -8,7 +8,7 @@ import kotlin.math.sign
 class Task54 : Task {
 	override fun solve(): Any {
 		val games = readFileAsString("54_poker.txt").lines().map { parseGame(it) }
-		var countPlayer1 = 0;
+		var countPlayer1 = 0
 		for (game in games) {
 			if (game.hand1.compareTo(game.hand2) > 0) {
 				countPlayer1++
@@ -51,7 +51,6 @@ class Task54 : Task {
 
 		private fun evaluateHand(): Pair<Int, List<Int>> {
 			val cardCounts = hand.groupingBy { it.value }.eachCount()
-			val cardValueOrder = "AKQJT98765432".toList().reversed()
 			// Sort cards based on frequency, then by their poker value
 			val sortedCards = cardCounts.entries.sortedWith(
 				compareByDescending<Map.Entry<Int, Int>> { it.value }

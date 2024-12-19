@@ -12,7 +12,7 @@ import se.embuc.utils.permutations
 // and to be pan, it has to have for 1 to n digits, so 7 digits it is
 class Task41 : Task {
 	override fun solve(): Any {
-		val permutations = "7654321".permutations().sortedDescending();
+		val permutations = "7654321".permutations().sortedDescending()
 		for (i in permutations) {
 			if (isPrime(i.toLong())) {
 				return i

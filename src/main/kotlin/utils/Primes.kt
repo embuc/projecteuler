@@ -62,11 +62,11 @@ fun primeFactorsCount(n: Int): Int {
 			count++
 			primeTest = 2
 		}
-		number /= 2;
+		number /= 2
 	}
 	var i = 3
 	while (i <= rootOfN) {
-		while (number % i === 0) {
+		while (number % i == 0) {
 			if (primeTest != i) {
 				count++
 				primeTest = i
@@ -134,7 +134,7 @@ fun getPrimesSieveBelow(n: Int): BooleanArray {
 		sievePrimes[i] = false
 	}
 
-	val sqrtN = kotlin.math.sqrt(n.toDouble()).toInt()
+	val sqrtN = sqrt(n.toDouble()).toInt()
 	for (i in 3..sqrtN step 2) {
 		if (sievePrimes[i]) {
 			for (j in i * i until n step 2 * i) {
@@ -148,7 +148,7 @@ fun getPrimesSieveBelow(n: Int): BooleanArray {
 fun getUpToNPrimes(limit: Int): List<Int> {
 //	Pn < n ln (n ln n) for n ≥ 6
 	val size = if (limit < 6) 13 else (limit * Math.log(limit.toDouble() * Math.log(limit.toDouble()))).toInt()
-	val sieve = getPrimesSieveBelow(size);
+	val sieve = getPrimesSieveBelow(size)
 	val primes = mutableListOf<Int>()
 	for (i in 2 until sieve.size) {
 		if (sieve[i]) {
@@ -160,7 +160,7 @@ fun getUpToNPrimes(limit: Int): List<Int> {
 }
 
 fun getPrimesBelow(limit: Int): Pair<MutableList<Int>, BooleanArray> {
-	val sieve = getPrimesSieveBelow(limit);
+	val sieve = getPrimesSieveBelow(limit)
 	val primes = mutableListOf<Int>()
 	for (i in 2 until sieve.size) {
 		if (sieve[i]) {

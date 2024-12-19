@@ -7,8 +7,8 @@ import se.embuc.utils.getPrimesSieveBelow
 //Truncatable primes
 class Task37 : Task {
 	override fun solve(): Any {
-		var sum = 0;
-		val primes = getPrimesSieveBelow(1_000_000);
+		var sum = 0
+		val primes = getPrimesSieveBelow(1_000_000)
 		for (i in 18 until primes.size step 6) {
 			if (primes[i + 1]) {
 				if (isTruncatablePrime(i + 1, primes)) {

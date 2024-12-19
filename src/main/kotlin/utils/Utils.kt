@@ -219,17 +219,17 @@ fun computeNthPermutation(numbers: MutableList<Char>, n: Int): String {
 }
 
 fun isPermutation(i: Int, j: Int): Boolean {
-	var i = i
-	var j = j
 	val digitsI = IntArray(10)
 	val digitsJ = IntArray(10)
-	while (i > 0) {
-		digitsI[i % 10]++
-		i /= 10
+	var numI = i
+	var numJ = j
+	while (numI > 0) {
+		digitsI[numI % 10]++
+		numI /= 10
 	}
-	while (j > 0) {
-		digitsJ[j % 10]++
-		j /= 10
+	while (numJ > 0) {
+		digitsJ[numJ % 10]++
+		numJ /= 10
 	}
 	for (k in 0..9) {
 		if (digitsI[k] != digitsJ[k]) return false
@@ -238,24 +238,23 @@ fun isPermutation(i: Int, j: Int): Boolean {
 }
 
 fun isPermutation(i: Long, j: Long): Boolean {
-	var i = i
-	var j = j
 	val digitsI = LongArray(getLongMagnitude(i).second.toInt())
 	val digitsJ = LongArray(getLongMagnitude(j).second.toInt())
-	while (i > 0) {
-		digitsI[(i % 10).toInt()]++
-		i /= 10
+	var numI = i
+	var numJ = j
+	while (numI > 0) {
+		digitsI[(numI % 10).toInt()]++
+		numI /= 10
 	}
-	while (j > 0) {
-		digitsJ[(j % 10).toInt()]++
-		j /= 10
+	while (numJ > 0) {
+		digitsJ[(numJ % 10).toInt()]++
+		numJ /= 10
 	}
 	for (k in 0..9) {
 		if (digitsI[k] != digitsJ[k]) return false
 	}
 	return true
 }
-
 
 fun isPanDigit(arr: IntArray): Boolean {
 	var map = 0 // (binary 0000000000) no digits encountered yet
@@ -289,11 +288,11 @@ fun isPanDigit(arr: IntArray): Boolean {
 			|| map == 30    //4digits
 			|| map == 14    //3digits
 			|| map == 6        //2digits
-			|| map == 2);    //1digits
+			|| map == 2)    //1digits
 }
 
 fun getIntMagnitude(i: Int): Pair<Int, Int> {
-	var n = i
+	val n = i
 	var log = 1
 	var exp = 1
 	// Loop (Determining the Magnitude): The while loop increases exp by multiplying it by 10 each time
@@ -307,7 +306,7 @@ fun getIntMagnitude(i: Int): Pair<Int, Int> {
 }
 
 fun getLongMagnitude(i: Long): Pair<Long, Long> {
-	var n = i
+	val n = i
 	var log = 1L
 	var exp = 1L
 	// Loop (Determining the Magnitude): The while loop increases exp by multiplying it by 10 each time
@@ -321,8 +320,8 @@ fun getLongMagnitude(i: Long): Pair<Long, Long> {
 }
 
 fun getPentagonalNumbers(n: Int): Pair<IntArray, BooleanArray> {
-	var arrDict = BooleanArray(n * 3 * n / 2) { false }
-	var arr = IntArray(n)
+	val arrDict = BooleanArray(n * 3 * n / 2) { false }
+	val arr = IntArray(n)
 	for (i in 1..n) {
 		val pentagonalNumber = i * (3 * i - 1) / 2
 		arrDict[pentagonalNumber] = true
@@ -332,8 +331,8 @@ fun getPentagonalNumbers(n: Int): Pair<IntArray, BooleanArray> {
 }
 
 fun getHexagonalNumbers(n: Int): Pair<IntArray, BooleanArray> {
-	var arrDict = BooleanArray(n * 2 * n) { false }
-	var arr = IntArray(n)
+	val arrDict = BooleanArray(n * 2 * n) { false }
+	val arr = IntArray(n)
 	for (i in 1..n) {
 		val hexagonalNumber = i * (2 * i - 1)
 		arrDict[hexagonalNumber] = true
@@ -392,16 +391,16 @@ fun findPositiveIntegerRoot(a: Double, b: Double, c: Double): Double? {
 	return null
 }
 
-inline fun Long.digitsCount(): IntArray {
-	var map = IntArray(10) // (0, 1, 2 ....) no digits encountered yet
-	val digits = this.digits();
+fun Long.digitsCount(): IntArray {
+	val map = IntArray(10) // (0, 1, 2 ....) no digits encountered yet
+	val digits = this.digits()
 	for (number in digits) {
 		map[number]++
 	}
 	return map
 }
 
-inline fun Long.digits(): IntArray {
+fun Long.digits(): IntArray {
 	val digits = mutableListOf<Int>()
 	var number = this
 	while (number > 0L) {
@@ -411,7 +410,7 @@ inline fun Long.digits(): IntArray {
 	return digits.toIntArray()
 }
 
-inline fun Int.digits(): IntArray {
+fun Int.digits(): IntArray {
 	val digits = mutableListOf<Int>()
 	var number = this
 	while (number > 0L) {
@@ -421,7 +420,7 @@ inline fun Int.digits(): IntArray {
 	return digits.toIntArray()
 }
 
-inline fun BigInteger.digits(): IntArray {
+fun BigInteger.digits(): IntArray {
 	val digits = mutableListOf<Int>()
 	var number = this
 	while (number > BigInteger.ZERO) {
@@ -431,11 +430,11 @@ inline fun BigInteger.digits(): IntArray {
 	return digits.toIntArray()
 }
 
-inline fun Int.pow(exponent: Int): Int {
+fun Int.pow(exponent: Int): Int {
 	require(exponent >= 0) { "Exponent must be non-negative" }
 
 	var result = 1
-	var base = this
+	val base = this
 	for (i in 1..exponent) {
 		result *= base
 	}
@@ -444,7 +443,6 @@ inline fun Int.pow(exponent: Int): Int {
 
 // 37,18 -> 3718 etc.
 fun concatenate(first: Int, second: Int): Int {
-	var second = second
 	var power = 1
 	while (power <= second) {
 		power *= 10
@@ -453,7 +451,6 @@ fun concatenate(first: Int, second: Int): Int {
 }
 
 fun concatenate(first: Long, second: Long): Long {
-	var second = second
 	var power = 1
 	while (power <= second) {
 		power *= 10
@@ -463,14 +460,14 @@ fun concatenate(first: Long, second: Long): Long {
 
 data class Fraction(var numerator: BigInteger, var denominator: BigInteger)
 
-fun solvePell(n: Int): Fraction? {
+fun solvePell(n: Int): Fraction {
 	val initialRoot = sqrt(n.toDouble()).toInt()
 	var y = initialRoot
 	var z = 1
 	var r = initialRoot * 2
-	var fraction1 = Fraction(BigInteger.ONE, BigInteger.ZERO)
-	var fraction2 = Fraction(BigInteger.ZERO, BigInteger.ONE)
-	var resultFraction = Fraction(BigInteger.ZERO, BigInteger.ZERO)
+	val fraction1 = Fraction(BigInteger.ONE, BigInteger.ZERO)
+	val fraction2 = Fraction(BigInteger.ZERO, BigInteger.ONE)
+	val resultFraction = Fraction(BigInteger.ZERO, BigInteger.ZERO)
 	while (true) {
 		y = r * z - y
 		z = (n - y * y) / z
@@ -488,29 +485,28 @@ fun solvePell(n: Int): Fraction? {
 			return Fraction(resultFraction.numerator, resultFraction.denominator)
 		}
 	}
-	return null
 }
 
 private fun nextNum(f: Fraction, term: Int) {
-	var temp = f.numerator
+	val temp = f.numerator
 	f.numerator = f.denominator
 	f.denominator = f.denominator * BigInteger.valueOf(term.toLong()) + temp
 }
 //Euler's totient function(phi) counts the positive integers up to a given integer n that are relatively prime to n
 fun phi(n: Int): Int {
-	var n = n
-	var result = n
+	var num = n
+	var result = num
 
 	var i = 2
-	while (i * i <= n) {
-		if (n % i == 0) {
-			while (n % i == 0) n /= i
+	while (i * i <= num) {
+		if (num % i == 0) {
+			while (num % i == 0) num /= i
 			result -= result / i
 		}
 		i++
 	}
 
-	if (n > 1) result -= result / n
+	if (num > 1) result -= result / num
 	return result
 }
 fun calculateTotientSum(n: Int): Long {
@@ -522,7 +518,7 @@ fun calculateTotientSum(n: Int): Long {
 	val isPrime = BooleanArray(n + 1)
 	Arrays.fill(isPrime, true)
 	isPrime[1] = false
-	isPrime[0] = isPrime[1] // 0 and 1 are not prime
+	isPrime[0] = false // 0 and 1 are not prime
 
 	for (i in 2..n) {
 		if (isPrime[i]) {

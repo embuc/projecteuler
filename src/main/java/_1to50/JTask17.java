@@ -30,7 +30,7 @@ public class JTask17 implements Task {
 			return BELOW_TWENTY[i / 100] + "hundred" + (i % 100 != 0 ? "and" + toEnglish(i % 100) : "");
 		}
 		if (i >= 20) {
-			return TENS[i / 10] + (i % 10 != 0 ? "" + BELOW_TWENTY[i % 10] : "");
+			return TENS[i / 10] + (i % 10 != 0 ? BELOW_TWENTY[i % 10] : "");
 		}
 		return BELOW_TWENTY[i];
 	}

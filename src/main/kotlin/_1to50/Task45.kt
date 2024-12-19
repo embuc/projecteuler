@@ -12,13 +12,12 @@ class Task45 : Task {
 	override fun solve(): Any {
 		var n = 286L
 		while (true) {
-			val triangle = getTriangleNumber(n++);
+			val triangle = getTriangleNumber(n++)
 			findPositiveIntegerRoot(3 / 2.0, -1 / 2.0, -triangle.toDouble())?.let {
 				findPositiveIntegerRoot(2.0, -1.0, -triangle.toDouble())?.let {
 					return triangle
 				}
 			}
 		}
-		return -1
 	}
 }

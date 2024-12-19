@@ -14,7 +14,7 @@ public class JTask58 implements Task {
 			int odd = 2 * i + 1;
 			int biggest = odd * odd;
 			for (int j = 1; j <= 3; j++) {
-				long next = biggest - j * (odd - 1);
+				long next = biggest - (long) j * (odd - 1);
 				if (isPrime(next)) {
 					count++;
 				}

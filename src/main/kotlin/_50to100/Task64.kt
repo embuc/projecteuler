@@ -17,8 +17,8 @@ class Task64:Task {
 
 			var sqrtFloor = initialSqrt.toDouble()
 			var denominator = 1.0
-			var numerator = 0.0
-			var remainder = 0.0
+			var numerator: Double
+			var remainder: Double
 			var iterationCount = 0
 
 			do {

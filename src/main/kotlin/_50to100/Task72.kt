@@ -6,6 +6,6 @@ import se.embuc.utils.calculateTotientSum
 // Counting fractions
 class Task72:Task {
 	override fun solve(): Any {
-		return calculateTotientSum(1000000);
+		return calculateTotientSum(1000000)
 	}
 }

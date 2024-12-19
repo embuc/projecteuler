@@ -15,7 +15,7 @@ class Task7 : Task {
 
 		var count = 2
 		for (i in 6..primes.size step 6) {
-			var prime = 0;
+			var prime = 0
 			if (primes[i + 1]) {
 				count++
 				prime = i + 1
