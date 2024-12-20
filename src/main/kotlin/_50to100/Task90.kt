@@ -1,4 +1,4 @@
-package _50to100
+package se.embuc._50to100
 
 import se.embuc.Task
 //Cube Digit Pairs

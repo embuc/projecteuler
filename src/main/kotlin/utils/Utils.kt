@@ -539,3 +539,32 @@ fun calculateTotientSum(n: Int): Long {
 
 	return sum
 }
+
+// Function to generate all permutations of a list
+fun <T> permute(list: List<T>): List<List<T>> {
+	if (list.size == 1) return listOf(list) // Base case: only one element
+	val permutations = mutableListOf<List<T>>()
+	for (i in list.indices) {
+		val remaining = list.toMutableList()
+		val current = remaining.removeAt(i) // Take one element
+		val subPermutations = permute(remaining) // Permute the rest
+		for (perm in subPermutations) {
+			permutations.add(listOf(current) + perm) // Add current to each sub-permutation
+		}
+	}
+	return permutations
+}
+
+fun allCombinationsOfFourDigits(): List<List<Int>> {
+	return (0..9).toList().combinations(4) // Generate all combinations of four digits
+}
+
+fun <T> List<T>.combinations(k: Int): List<List<T>> {
+	if (k == 0) return listOf(emptyList())
+	if (this.isEmpty()) return emptyList()
+	val head = first()
+	val tail = drop(1)
+	val withHead = tail.combinations(k - 1).map { listOf(head) + it }
+	val withoutHead = tail.combinations(k)
+	return withHead + withoutHead
+}
