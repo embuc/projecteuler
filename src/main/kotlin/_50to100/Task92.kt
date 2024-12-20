@@ -1,31 +1,39 @@
 package se.embuc._50to100
 
 import se.embuc.Task
-import se.embuc.utils.digits
 
 //Square Digit Chains
 class Task92() : Task {
 
 	override fun solve(): Any {
 		//how many under 10000000 end in 89
+		val known = IntArray(10_000_000)
+		known[89] = 89
+		known[1] = 1
 
-		val endIn89 = mutableSetOf(89)
-		val endIn1 = mutableSetOf(1)
-		for(i in 2 until 10000000){
-			val chain = mutableListOf(i)
+		for (i in 2 until 10_000_000) {
 			var current = i
-			while(current !in endIn89 && current !in endIn1){
-				val next = current.digits().sumOf { it * it }
-				chain.add(next)
-				current = next
+
+			while (known[current] == 0) {
+				current = current.next()
 			}
-			if(current in endIn89){
-				endIn89.addAll(chain)
-			}else{
-				endIn1.addAll(chain)
-			}
+
+			known[i] = known[current]
 		}
 
-		return endIn89.size
+		val count = known.count { it == 89 }
+
+		return count // Return the result
+	}
+
+	private fun Int.next(): Int {
+		var n = this
+		var sum = 0
+		while (n > 0) {
+			val digit = n % 10
+			sum += digit * digit
+			n /= 10
+		}
+		return sum
 	}
 }
