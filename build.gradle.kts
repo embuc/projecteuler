@@ -22,7 +22,7 @@ dependencies {
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher:1.10.1")
 	implementation("org.projectlombok:lombok:1.18.24")
 	annotationProcessor("org.projectlombok:lombok:1.18.24")
-
+	implementation("it.unimi.dsi:fastutil:8.5.15")
 }
 apply(from = "test-utils.gradle.kts")
 tasks {
