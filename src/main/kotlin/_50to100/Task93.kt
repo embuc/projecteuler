@@ -4,11 +4,26 @@ import se.embuc.Task
 import se.embuc.utils.allCombinationsOfFourDigits
 import se.embuc.utils.permute
 
-//Arithmetic Expressions
 class Task93():Task {
 
 	override fun solve(): Any {
-		return findBestSet()
+//		Generate all valid expressions using the four digits {a, b, c, d}.
+//		Evaluate each expression to see if it produces a positive integer.
+//		Track which integers can be formed and determine the longest sequence of consecutive integers starting from 1.
+//		Return the result.
+		// allowed operations + - *  / and parantheses ( )
+
+//		Permutations:
+//		Generate all permutations of the four digits {a, b, c, d} (to try different orders of combining numbers).
+//			Recursive Backtracking:
+//			For each permutation, recursively generate all possible valid expressions using the digits.
+//			Evaluate the expressions and track the positive integers produced.
+//			Consecutive Integer Check:
+//			After evaluating all expressions for a particular set of digits, find the longest sequence of consecutive integers starting from 1.
+
+		val set = findBestSet()
+		println(set)
+		return set
 	}
 
 	fun findBestSet(): String {
