@@ -11,9 +11,7 @@ class Task93 : Task {
 	private val maxPossibleSequence = 100
 
 	override fun solve(): Any {
-		val set = findBestSet()
-		println(set)
-		return set
+		return findBestSet()
 	}
 
 	fun findBestSet(): String {
