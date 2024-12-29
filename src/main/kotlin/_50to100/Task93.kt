@@ -2,25 +2,15 @@ package se.embuc._50to100
 
 import se.embuc.Task
 import se.embuc.utils.allCombinationsOfFourDigits
-import se.embuc.utils.permute
 
-class Task93():Task {
+//Arithmetic expressions
+class Task93 : Task {
+	private val expressionCache = mutableMapOf<String, Set<Int>>()
+
+	// Early termination threshold
+	private val maxPossibleSequence = 100
 
 	override fun solve(): Any {
-//		Generate all valid expressions using the four digits {a, b, c, d}.
-//		Evaluate each expression to see if it produces a positive integer.
-//		Track which integers can be formed and determine the longest sequence of consecutive integers starting from 1.
-//		Return the result.
-		// allowed operations + - *  / and parantheses ( )
-
-//		Permutations:
-//		Generate all permutations of the four digits {a, b, c, d} (to try different orders of combining numbers).
-//			Recursive Backtracking:
-//			For each permutation, recursively generate all possible valid expressions using the digits.
-//			Evaluate the expressions and track the positive integers produced.
-//			Consecutive Integer Check:
-//			After evaluating all expressions for a particular set of digits, find the longest sequence of consecutive integers starting from 1.
-
 		val set = findBestSet()
 		println(set)
 		return set
@@ -30,71 +20,88 @@ class Task93():Task {
 		var longestSequence = 0
 		var bestSet = ""
 
-		// Step 1: Iterate over all combinations of 4 digits
-		for (digits in allCombinationsOfFourDigits()) {
-			val results = mutableSetOf<Int>()
+		// Pre-sort combinations to avoid repeated sorting
+		val combinations = allCombinationsOfFourDigits().map { it.sorted().joinToString("") }
 
-			// Step 2: Generate permutations of the digits
-			for (perm in permute(digits)) {
-				// Step 3: Use backtracking to evaluate all possible expressions
-				backtrack(perm.map { it.toDouble() }, results)
+		for (digits in combinations) {
+			// Check if we've already computed this combination
+			val results = expressionCache.getOrPut(digits) {
+				val tempResults = mutableSetOf<Int>()
+				backtrack(digits.map { it.toString().toDouble() }, tempResults)
+				tempResults
 			}
 
-			// Step 4: Find the longest sequence of consecutive integers from the results
 			val consecutiveLength = findConsecutiveLength(results)
 			if (consecutiveLength > longestSequence) {
 				longestSequence = consecutiveLength
-				bestSet = digits.sorted().joinToString("") // Store as a string
+				bestSet = digits
+
+				// Early termination if we've found a sufficiently long sequence
+				if (longestSequence >= maxPossibleSequence) break
 			}
 		}
 
 		return bestSet
 	}
 
-
 	fun backtrack(numbers: List<Double>, results: MutableSet<Int>) {
-		// Base case: Only one number left
+		// Early pruning: Skip if the partial result is too large
+		if (numbers.any { it > 10000 }) return
+
 		if (numbers.size == 1) {
 			val result = numbers[0]
-			if (result > 0 && result == result.toInt().toDouble()) {
+			// Add bounds checking for practical results
+			if (result > 0 && result <= maxPossibleSequence * 2 && result == result.toInt().toDouble()) {
 				results.add(result.toInt())
 			}
 			return
 		}
 
-		// Try all pairs of numbers and apply all operations
+		// Use ranges instead of indices for better performance
 		for (i in numbers.indices) {
-			for (j in numbers.indices) {
-				if (i == j) continue // Skip same index
-
+			for (j in (i + 1)..numbers.lastIndex) {
 				val num1 = numbers[i]
 				val num2 = numbers[j]
-				val remaining = numbers.filterIndexed { index, _ -> index != i && index != j } // Remaining numbers
+				val remaining = numbers.filterIndexed { index, _ -> index != i && index != j }
 
-				// Apply operations
-				listOf(
-					num1 + num2,
-					num1 - num2,
-					num1 * num2,
-					if (num2 != 0.0) num1 / num2 else null // Division (avoid divide by zero)
-				).filterNotNull().forEach { result ->
-					backtrack(remaining + result, results) // Recurse with the new number list
-				}
+				computeOperations(num1, num2, remaining, results)
 			}
+		}
+	}
+
+	private fun computeOperations(num1: Double, num2: Double, remaining: List<Double>, results: MutableSet<Int>) {
+		// Addition and multiplication are commutative, so we only need to compute them once
+		tryOperation(num1 + num2, remaining, results)
+		tryOperation(num1 * num2, remaining, results)
+
+		// Non-commutative operations need both orderings
+		tryOperation(num1 - num2, remaining, results)
+		tryOperation(num2 - num1, remaining, results)
+
+		if (num2 != 0.0) tryOperation(num1 / num2, remaining, results)
+		if (num1 != 0.0) tryOperation(num2 / num1, remaining, results)
+	}
+
+	private fun tryOperation(result: Double, remaining: List<Double>, results: MutableSet<Int>) {
+		// Early pruning: Skip if the result is not promising
+		if (result.isFinite() && result > 0 && result <= maxPossibleSequence * 2) {
+			backtrack(remaining + result, results)
 		}
 	}
 
 	fun findConsecutiveLength(results: Set<Int>): Int {
-		val sorted = results.sorted()
+		// Optimize by using direct iteration instead of sorting
 		var count = 0
-		for (i in sorted) {
-			if (i == count + 1) {
-				count++
-			} else if (i > count + 1) {
-				break
-			}
+		var current = 1
+
+		while (results.contains(current)) {
+			count++
+			current++
+
+			// Early termination if we've found a sufficiently long sequence
+			if (count >= maxPossibleSequence) break
 		}
+
 		return count
 	}
-
 }

@@ -4,7 +4,6 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import se.embuc._50to100.Task93
 
-//TODO optimize, not so fast
 class Task93Test {
 
 	@Test
@@ -12,4 +11,5 @@ class Task93Test {
 		assertEquals("1258", Task93().solve())
 		assertEquals("1258", JTask93().solve())
 	}
+
 }
